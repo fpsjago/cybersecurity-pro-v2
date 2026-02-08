@@ -29,7 +29,7 @@ export default function Header() {
             <Button variant="ghost" size="sm" href="/contact">
               Contact
             </Button>
-            <Button variant="primary" size="sm" href="/demo">
+            <Button variant="primary" size="sm" href="/contact">
               Get Started
             </Button>
           </div>
@@ -55,7 +55,7 @@ export default function Header() {
               <a href="/about" className={styles.mobileLink}>About</a>
               <a href="/contact" className={styles.mobileLink}>Contact</a>
             </div>
-            <Button variant="primary" size="md" href="/demo" fullWidth>
+            <Button variant="primary" size="md" href="/contact" fullWidth>
               Get Started
             </Button>
           </Container>

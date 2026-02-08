@@ -1,4 +1,7 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import { ResourceCardFeatured } from '../components/resources/ResourceCardFeatured';
 import { ResourceCard } from '../components/resources/ResourceCard';
 import { CategoryFilter } from '../components/resources/CategoryFilter';
@@ -34,14 +37,8 @@ const resources = [
 const featuredResource = resources[0];
 ---
 
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resources & Blog - CyberSec Pro</title>
-  <meta name="description" content="Security insights, threat intelligence, and best practices from cybersecurity experts. Explore our blog, whitepapers, case studies, and webinars." />
-</head>
-<body>
+<BaseLayout title="Resources & Blog - CyberSec Pro" description="Security insights, threat intelligence, and best practices from cybersecurity experts. Explore our blog, whitepapers, case studies, and webinars.">
+  <Header client:load />
   <!-- Hero Section -->
   <section class="hero">
     <Container client:load>
@@ -103,10 +100,14 @@ const featuredResource = resources[0];
       </div>
     </Container>
   </section>
-</body>
-</html>
+  <Footer />
+</BaseLayout>
 
 <style>
+  .hero {
+    padding-top: 8rem;
+  }
+
   * {
     margin: 0;
     padding: 0;

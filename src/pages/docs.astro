@@ -1,4 +1,7 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import { SearchBar } from '../components/docs/SearchBar';
 import { DocCategoryCard } from '../components/docs/DocCategoryCard';
 import { DocArticleCard } from '../components/docs/DocArticleCard';
@@ -84,14 +87,8 @@ const supportOptions = [
 ];
 ---
 
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Documentation & Help Center - CyberSec Pro</title>
-  <meta name="description" content="Comprehensive documentation, guides, and tutorials for CyberSec Pro. Get started quickly or explore advanced features." />
-</head>
-<body>
+<BaseLayout title="Documentation & Help Center - CyberSec Pro" description="Comprehensive documentation, guides, and tutorials for CyberSec Pro. Get started quickly or explore advanced features.">
+  <Header client:load />
   <!-- Hero Section -->
   <section class="hero">
     <Container client:load>
@@ -182,10 +179,14 @@ const supportOptions = [
       </div>
     </Container>
   </section>
-</body>
-</html>
+  <Footer />
+</BaseLayout>
 
 <style>
+  .hero {
+    padding-top: 8rem;
+  }
+
   * {
     margin: 0;
     padding: 0;

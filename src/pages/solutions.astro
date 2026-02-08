@@ -1,4 +1,7 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import SolutionCard from '../components/sections/SolutionCard';
 import IntegrationLogo from '../components/sections/IntegrationLogo';
 import CaseStudyCard from '../components/sections/CaseStudyCard';
@@ -104,19 +107,24 @@ const solutions = [
   }
 ];
 
+// Helper to generate SVG logo badges
+function generateBadge(name: string): string {
+  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" rx="8" fill="%230f172a"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%2394a3b8" font-family="system-ui" font-size="11" font-weight="600">${name}</text></svg>`)}`;
+}
+
 const integrations = [
-  { name: 'Microsoft', logo: 'https://via.placeholder.com/80?text=MS', category: 'Cloud' },
-  { name: 'AWS', logo: 'https://via.placeholder.com/80?text=AWS', category: 'Cloud' },
-  { name: 'Google Cloud', logo: 'https://via.placeholder.com/80?text=GCP', category: 'Cloud' },
-  { name: 'Azure', logo: 'https://via.placeholder.com/80?text=Azure', category: 'Cloud' },
-  { name: 'Okta', logo: 'https://via.placeholder.com/80?text=Okta', category: 'Identity' },
-  { name: 'Duo', logo: 'https://via.placeholder.com/80?text=Duo', category: 'Identity' },
-  { name: 'ServiceNow', logo: 'https://via.placeholder.com/80?text=SN', category: 'ITSM' },
-  { name: 'Slack', logo: 'https://via.placeholder.com/80?text=Slack', category: 'Communication' },
-  { name: 'Splunk', logo: 'https://via.placeholder.com/80?text=Splunk', category: 'SIEM' },
-  { name: 'Palo Alto', logo: 'https://via.placeholder.com/80?text=PANW', category: 'Security' },
-  { name: 'Cisco', logo: 'https://via.placeholder.com/80?text=Cisco', category: 'Network' },
-  { name: 'Fortinet', logo: 'https://via.placeholder.com/80?text=Fortinet', category: 'Security' }
+  { name: 'Microsoft', logo: generateBadge('Microsoft'), category: 'Cloud' },
+  { name: 'AWS', logo: generateBadge('AWS'), category: 'Cloud' },
+  { name: 'Google Cloud', logo: generateBadge('GCP'), category: 'Cloud' },
+  { name: 'Azure', logo: generateBadge('Azure'), category: 'Cloud' },
+  { name: 'Okta', logo: generateBadge('Okta'), category: 'Identity' },
+  { name: 'Duo', logo: generateBadge('Duo'), category: 'Identity' },
+  { name: 'ServiceNow', logo: generateBadge('ServiceNow'), category: 'ITSM' },
+  { name: 'Slack', logo: generateBadge('Slack'), category: 'Communication' },
+  { name: 'Splunk', logo: generateBadge('Splunk'), category: 'SIEM' },
+  { name: 'Palo Alto', logo: generateBadge('Palo Alto'), category: 'Security' },
+  { name: 'Cisco', logo: generateBadge('Cisco'), category: 'Network' },
+  { name: 'Fortinet', logo: generateBadge('Fortinet'), category: 'Security' }
 ];
 
 const caseStudies = [
@@ -131,8 +139,8 @@ const caseStudies = [
       { label: 'Response Time', value: '<1min' },
       { label: 'Threats Blocked', value: '50K+' }
     ],
-    image: 'https://via.placeholder.com/600x400?text=Finance+Case',
-    logo: 'https://via.placeholder.com/80?text=Bank'
+    image: 'https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?w=600&h=400&fit=crop',
+    logo: generateBadge('Finance')
   },
   {
     company: 'Healthcare Network',
@@ -145,8 +153,8 @@ const caseStudies = [
       { label: 'Incidents', value: '0' },
       { label: 'Uptime', value: '99.99%' }
     ],
-    image: 'https://via.placeholder.com/600x400?text=Healthcare+Case',
-    logo: 'https://via.placeholder.com/80?text=Health'
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop',
+    logo: generateBadge('Health')
   },
   {
     company: 'E-commerce Leader',
@@ -159,23 +167,15 @@ const caseStudies = [
       { label: 'Downtime', value: '0hrs' },
       { label: 'Cost Savings', value: '40%' }
     ],
-    image: 'https://via.placeholder.com/600x400?text=Retail+Case',
-    logo: 'https://via.placeholder.com/80?text=Retail'
+    image: 'https://images.unsplash.com/photo-1556740758-90de374c12ad?w=600&h=400&fit=crop',
+    logo: generateBadge('Retail')
   }
 ];
 ---
 
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Security Solutions | CyberSec Pro</title>
-  <meta name="description" content="Comprehensive cybersecurity solutions for every threat. EDR, Cloud Security, IAM, SIEM/SOAR, and more." />
-  <link rel="icon" href="/favicon.ico" />
-</head>
-<body>
-  <main>
+<BaseLayout title="Security Solutions | CyberSec Pro" description="Comprehensive cybersecurity solutions for every threat. EDR, Cloud Security, IAM, SIEM/SOAR, and more.">
+  <Header client:load />
+  <main style="padding-top: 72px;">
     <!-- Hero Section -->
     <section class="section" style="background: var(--gradient-hero);">
       <div class="container">
@@ -307,5 +307,5 @@ const caseStudies = [
 
     document.querySelectorAll('.staggerGrid').forEach(el => observer.observe(el));
   </script>
-</body>
-</html>
+  <Footer />
+</BaseLayout>

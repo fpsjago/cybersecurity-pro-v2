@@ -1,4 +1,7 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import MissionCard from '../components/about/MissionCard';
 import ValueCard from '../components/about/ValueCard';
 import Timeline from '../components/about/Timeline';
@@ -16,12 +19,8 @@ const timelineData = [
 ];
 ---
 
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - CyberSec Pro</title>
+<BaseLayout title="About Us - CyberSec Pro" description="Learn about CyberSec Pro's mission to secure the digital world with AI-powered cybersecurity.">
+  <Header client:load />
   <style>
     * {
       margin: 0;
@@ -306,9 +305,11 @@ const timelineData = [
       .awards-grid { grid-template-columns: repeat(3, 1fr); }
       .benefits-grid { grid-template-columns: 1fr; }
     }
+    
+    .hero {
+      padding-top: 10rem !important;
+    }
   </style>
-</head>
-<body>
   <!-- Hero Section -->
   <section class="hero">
     <div class="container hero-content">
@@ -571,5 +572,5 @@ const timelineData = [
       </div>
     </div>
   </section>
-</body>
-</html>
+  <Footer />
+</BaseLayout>

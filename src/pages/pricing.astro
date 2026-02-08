@@ -1,4 +1,7 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 import PricingSection from '../components/sections/PricingSection';
 import FeatureComparisonTable from '../components/sections/FeatureComparisonTable';
 import FAQAccordion from '../components/sections/FAQAccordion';
@@ -189,17 +192,9 @@ const faqs = [
 ];
 ---
 
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing | CyberSec Pro</title>
-  <meta name="description" content="Simple, transparent pricing for enterprise cybersecurity. Plans starting at $99/month. 14-day free trial." />
-  <link rel="icon" href="/favicon.ico" />
-</head>
-<body>
-  <main>
+<BaseLayout title="Pricing | CyberSec Pro" description="Simple, transparent pricing for enterprise cybersecurity. Plans starting at $99/month. 14-day free trial.">
+  <Header client:load />
+  <main style="padding-top: 72px;">
     <!-- Hero Section -->
     <section class="section" style="background: var(--gradient-hero); text-align: center;">
       <div class="container">
@@ -301,5 +296,5 @@ const faqs = [
       </div>
     </section>
   </main>
-</body>
-</html>
+  <Footer />
+</BaseLayout>

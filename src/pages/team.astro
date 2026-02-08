@@ -1,4 +1,7 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import TeamMemberCard from '../components/team/TeamMemberCard';
 import OrgChart from '../components/team/OrgChart';
 import JobListing from '../components/team/JobListing';
@@ -93,13 +96,10 @@ const openPositions = [
 ];
 ---
 
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team - CyberSec Pro</title>
+<BaseLayout title="Team - CyberSec Pro" description="Meet the cybersecurity experts behind CyberSec Pro. Our diverse team of veterans, researchers, and innovators.">
+  <Header client:load />
   <style>
+    .hero { padding-top: 10rem !important; }
     * {
       margin: 0;
       padding: 0;
@@ -477,5 +477,5 @@ const openPositions = [
       </div>
     </div>
   </section>
-</body>
-</html>
+  <Footer />
+</BaseLayout>

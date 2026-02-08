@@ -1,4 +1,7 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import { ContactForm } from '../components/contact/ContactForm';
 import { ContactInfoCard } from '../components/contact/ContactInfoCard';
 import { OfficeCard } from '../components/contact/OfficeCard';
@@ -30,14 +33,8 @@ const faqs = [
 ];
 ---
 
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us - CyberSec Pro</title>
-  <meta name="description" content="Get in touch with our security experts. Email: dce82@me.com | Phone: 1-888-555-1234 | 24-hour response time." />
-</head>
-<body>
+<BaseLayout title="Contact Us - CyberSec Pro" description="Get in touch with our security experts. Email: dce82@me.com | Phone: 1-888-555-1234 | 24-hour response time.">
+  <Header client:load />
   <!-- Hero Section -->
   <section class="hero">
     <Container client:load>
@@ -140,10 +137,14 @@ const faqs = [
       </div>
     </Container>
   </section>
-</body>
-</html>
+  <Footer />
+</BaseLayout>
 
 <style>
+  .hero {
+    padding-top: 8rem;
+  }
+
   * {
     margin: 0;
     padding: 0;

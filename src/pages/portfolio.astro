@@ -1,4 +1,7 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import FilterBar from '../components/portfolio/FilterBar';
 import CaseStudyCardLarge from '../components/portfolio/CaseStudyCardLarge';
 import ClientTestimonialCard from '../components/portfolio/ClientTestimonialCard';
@@ -147,13 +150,10 @@ const aggregateMetrics = [
 ];
 ---
 
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - CyberSec Pro</title>
+<BaseLayout title="Portfolio - CyberSec Pro" description="Explore our customer success stories and case studies across finance, healthcare, retail, and more.">
+  <Header client:load />
   <style>
+    .hero { padding-top: 10rem !important; }
     * {
       margin: 0;
       padding: 0;
@@ -426,5 +426,5 @@ const aggregateMetrics = [
       </div>
     </div>
   </section>
-</body>
-</html>
+  <Footer />
+</BaseLayout>
