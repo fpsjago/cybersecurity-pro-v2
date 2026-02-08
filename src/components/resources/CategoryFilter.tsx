@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './CategoryFilter.module.css';
 
 interface CategoryFilterProps {
