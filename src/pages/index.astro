@@ -307,11 +307,11 @@ const resources = [
           subtitle="Trusted by security teams at the world's leading organizations"
         />
         <div class="testimonial-carousel">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} variant="glass" padding="lg" class="testimonial-card">
+          {testimonials.map((testimonial) => (
+            <Card variant="glass" padding="lg" className="testimonial-card">
               <div class="testimonial-rating">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <span key={i} class="star">★</span>
+                {Array.from({ length: testimonial.rating }).map(() => (
+                  <span class="star">★</span>
                 ))}
               </div>
               <blockquote class="testimonial-quote">"{testimonial.quote}"</blockquote>

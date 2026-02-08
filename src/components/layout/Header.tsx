@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Container from '../common/Container';
 import Button from '../common/Button';
+import ThemeToggle from '../common/ThemeToggle';
 import styles from './Header.module.css';
 
 export default function Header() {
@@ -24,6 +25,7 @@ export default function Header() {
           </div>
 
           <div className={styles.navActions}>
+            <ThemeToggle />
             <Button variant="ghost" size="sm" href="/contact">
               Contact
             </Button>
