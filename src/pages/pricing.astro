@@ -8,6 +8,8 @@ import FAQAccordion from '../components/sections/FAQAccordion';
 import '../styles/design-system.css';
 import '../styles/animations.css';
 
+const BASE_URL = import.meta.env.BASE_URL || "";
+
 // Pricing data moved to PricingSection component
 const _pricingData = [
   {
@@ -199,7 +201,7 @@ const faqs = [
     <section class="section" style="background: var(--gradient-hero); text-align: center;">
       <div class="container">
         <nav style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">
-          <a href="/" style="color: var(--color-primary-500);">Home</a> / <span>Pricing</span>
+          <a href={`${BASE_URL}/`} style="color: var(--color-primary-500);">Home</a> / <span>Pricing</span>
         </nav>
         <h1 style="font-size: var(--text-6xl); font-weight: var(--font-extrabold); color: var(--color-text-primary); margin-bottom: var(--space-4); line-height: var(--leading-tight);">
           Simple, <span style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Transparent</span> Pricing
@@ -286,10 +288,10 @@ const faqs = [
           Talk to our security experts. We'll help you choose the perfect solution for your organization.
         </p>
         <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-          <a href="/contact" style="padding: var(--space-4) var(--space-8); background: white; color: var(--color-primary-500); border-radius: var(--radius-lg); font-weight: var(--font-semibold); box-shadow: var(--shadow-xl);">
+          <a href={`${BASE_URL}/contact/`} style="padding: var(--space-4) var(--space-8); background: white; color: var(--color-primary-500); border-radius: var(--radius-lg); font-weight: var(--font-semibold); box-shadow: var(--shadow-xl);">
             Talk to Sales
           </a>
-          <a href="/solutions" style="padding: var(--space-4) var(--space-8); background: transparent; color: white; border: 2px solid white; border-radius: var(--radius-lg); font-weight: var(--font-semibold);">
+          <a href={`${BASE_URL}/solutions/`} style="padding: var(--space-4) var(--space-8); background: transparent; color: white; border: 2px solid white; border-radius: var(--radius-lg); font-weight: var(--font-semibold);">
             Explore Solutions
           </a>
         </div>

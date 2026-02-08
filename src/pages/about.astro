@@ -8,6 +8,8 @@ import Timeline from '../components/about/Timeline';
 import AwardBadge from '../components/about/AwardBadge';
 import BenefitCard from '../components/about/BenefitCard';
 
+const BASE_URL = import.meta.env.BASE_URL || "";
+
 const timelineData = [
   { year: '2015', title: 'Company Founded', description: 'Started in Austin, TX with a mission to democratize enterprise security' },
   { year: '2017', title: 'Series A Funding', description: '$10M raised to expand our AI-powered threat detection platform' },
@@ -563,7 +565,7 @@ const timelineData = [
       <div class="cta-section">
         <h2>Ready to Join Our Mission?</h2>
         <p>We're always looking for talented people who share our passion for security</p>
-        <a href="/team" class="cta-button">
+        <a href={`${BASE_URL}/team/`} class="cta-button">
           View Open Positions
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M7.5 15l5-5-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

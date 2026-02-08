@@ -1,6 +1,8 @@
 import Container from '../common/Container';
 import styles from './Footer.module.css';
 
+const BASE_URL = import.meta.env.BASE_URL || '';
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -26,30 +28,30 @@ export default function Footer() {
           <div className={styles.column}>
             <h4 className={styles.heading}>Solutions</h4>
             <ul className={styles.links}>
-              <li><a href="/solutions#endpoint">Endpoint Security</a></li>
-              <li><a href="/solutions#cloud">Cloud Security</a></li>
-              <li><a href="/solutions#identity">Identity Access</a></li>
-              <li><a href="/solutions#threat">Threat Intelligence</a></li>
+              <li><a href={`${BASE_URL}/solutions/#endpoint`}>Endpoint Security</a></li>
+              <li><a href={`${BASE_URL}/solutions/#cloud`}>Cloud Security</a></li>
+              <li><a href={`${BASE_URL}/solutions/#identity`}>Identity Access</a></li>
+              <li><a href={`${BASE_URL}/solutions/#threat`}>Threat Intelligence</a></li>
             </ul>
           </div>
 
           <div className={styles.column}>
             <h4 className={styles.heading}>Company</h4>
             <ul className={styles.links}>
-              <li><a href="/about">About Us</a></li>
-              <li><a href="/team">Team</a></li>
-              <li><a href="/portfolio">Case Studies</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><a href={`${BASE_URL}/about/`}>About Us</a></li>
+              <li><a href={`${BASE_URL}/team/`}>Team</a></li>
+              <li><a href={`${BASE_URL}/portfolio/`}>Case Studies</a></li>
+              <li><a href={`${BASE_URL}/contact/`}>Contact</a></li>
             </ul>
           </div>
 
           <div className={styles.column}>
             <h4 className={styles.heading}>Resources</h4>
             <ul className={styles.links}>
-              <li><a href="/resources">Blog</a></li>
-              <li><a href="/docs">Documentation</a></li>
-              <li><a href="/resources#whitepapers">Whitepapers</a></li>
-              <li><a href="/resources#webinars">Webinars</a></li>
+              <li><a href={`${BASE_URL}/resources/`}>Blog</a></li>
+              <li><a href={`${BASE_URL}/docs/`}>Documentation</a></li>
+              <li><a href={`${BASE_URL}/resources/#whitepapers`}>Whitepapers</a></li>
+              <li><a href={`${BASE_URL}/resources/#webinars`}>Webinars</a></li>
             </ul>
           </div>
         </div>
@@ -59,8 +61,8 @@ export default function Footer() {
             © {year} CyberSec Pro. All rights reserved.
           </p>
           <div className={styles.legal}>
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
+            <a href={`${BASE_URL}/contact/`}>Privacy Policy</a>
+            <a href={`${BASE_URL}/contact/`}>Terms of Service</a>
           </div>
         </div>
       </Container>

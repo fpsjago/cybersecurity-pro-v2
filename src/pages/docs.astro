@@ -9,6 +9,8 @@ import { VideoCard } from '../components/docs/VideoCard';
 import { SupportOptionCard } from '../components/docs/SupportOptionCard';
 import Container from '../components/common/Container';
 
+const BASE_URL = import.meta.env.BASE_URL || "";
+
 const categories = [
   { 
     title: 'Getting Started', 
@@ -173,8 +175,8 @@ const supportOptions = [
         <h2 class="cta-title">Can't Find What You're Looking For?</h2>
         <p class="cta-subtitle">Our support team is here to help. Get in touch and we'll respond within 24 hours.</p>
         <div class="cta-buttons">
-          <a href="/contact" class="button-primary">Contact Support</a>
-          <a href="/resources" class="button-secondary">Browse Resources</a>
+          <a href={`${BASE_URL}/contact/`} class="button-primary">Contact Support</a>
+          <a href={`${BASE_URL}/resources/`} class="button-secondary">Browse Resources</a>
         </div>
       </div>
     </Container>

@@ -8,6 +8,8 @@ import { OfficeCard } from '../components/contact/OfficeCard';
 import { LiveChatWidget } from '../components/contact/LiveChatWidget';
 import Container from '../components/common/Container';
 
+const BASE_URL = import.meta.env.BASE_URL || "";
+
 const contactInfo = [
   { icon: 'mail', label: 'Email', value: 'dce82@me.com', link: 'mailto:dce82@me.com' },
   { icon: 'phone', label: 'Phone', value: '1-888-555-1234', link: 'tel:1-888-555-1234' },
@@ -132,7 +134,7 @@ const faqs = [
         <p class="cta-subtitle">Our team is standing by to help you secure your organization.</p>
         <div class="cta-buttons">
           <a href="tel:1-888-555-1234" class="button-primary">Call Now: 1-888-555-1234</a>
-          <a href="/docs" class="button-secondary">Browse Documentation</a>
+          <a href={`${BASE_URL}/docs/`} class="button-secondary">Browse Documentation</a>
         </div>
       </div>
     </Container>

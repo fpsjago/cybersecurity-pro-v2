@@ -12,6 +12,8 @@ import StatsCounter from '../components/common/StatsCounter';
 import Card from '../components/common/Card';
 import '../styles/homepage.css';
 
+const BASE_URL = import.meta.env.BASE_URL || "";
+
 const stats = [
   { value: 30.9, suffix: 'B+', label: 'Threats Blocked', decimals: 1 },
   { value: 99.9, suffix: '%', label: 'Uptime SLA', decimals: 1 },
@@ -137,10 +139,10 @@ const resources = [
             24/7 with real-time threat detection and automated response.
           </p>
           <div class="hero-ctas">
-            <Button variant="primary" size="lg" href="/contact">
+            <Button variant="primary" size="lg" href={`${BASE_URL}/contact/`}>
               Get Started - Free Trial
             </Button>
-            <Button variant="outline" size="lg" href="/pricing">
+            <Button variant="outline" size="lg" href={`${BASE_URL}/pricing/`}>
               View Pricing ▶
             </Button>
           </div>
@@ -253,7 +255,7 @@ const resources = [
             <p class="solution-description">
               Complete security suite for large organizations with complex infrastructure
             </p>
-            <a href="/solutions#enterprise" class="solution-link">Learn More →</a>
+            <a href={`${BASE_URL}/solutions/#enterprise`} class="solution-link">Learn More →</a>
           </Card>
           <Card variant="bordered" padding="lg" hover>
             <div class="solution-icon">🏥</div>
@@ -261,7 +263,7 @@ const resources = [
             <p class="solution-description">
               HIPAA-compliant security for protecting sensitive patient data
             </p>
-            <a href="/solutions#healthcare" class="solution-link">Learn More →</a>
+            <a href={`${BASE_URL}/solutions/#healthcare`} class="solution-link">Learn More →</a>
           </Card>
           <Card variant="bordered" padding="lg" hover>
             <div class="solution-icon">🏦</div>
@@ -269,7 +271,7 @@ const resources = [
             <p class="solution-description">
               Bank-grade security meeting PCI-DSS and SOC 2 requirements
             </p>
-            <a href="/solutions#finance" class="solution-link">Learn More →</a>
+            <a href={`${BASE_URL}/solutions/#finance`} class="solution-link">Learn More →</a>
           </Card>
           <Card variant="bordered" padding="lg" hover>
             <div class="solution-icon">🛒</div>
@@ -277,7 +279,7 @@ const resources = [
             <p class="solution-description">
               Protect customer data and payment information at scale
             </p>
-            <a href="/solutions#retail" class="solution-link">Learn More →</a>
+            <a href={`${BASE_URL}/solutions/#retail`} class="solution-link">Learn More →</a>
           </Card>
           <Card variant="bordered" padding="lg" hover>
             <div class="solution-icon">🏛️</div>
@@ -285,7 +287,7 @@ const resources = [
             <p class="solution-description">
               FedRAMP authorized solutions for public sector organizations
             </p>
-            <a href="/solutions#government" class="solution-link">Learn More →</a>
+            <a href={`${BASE_URL}/solutions/#government`} class="solution-link">Learn More →</a>
           </Card>
           <Card variant="bordered" padding="lg" hover>
             <div class="solution-icon">⚙️</div>
@@ -293,7 +295,7 @@ const resources = [
             <p class="solution-description">
               Secure OT environments and protect intellectual property
             </p>
-            <a href="/solutions#manufacturing" class="solution-link">Learn More →</a>
+            <a href={`${BASE_URL}/solutions/#manufacturing`} class="solution-link">Learn More →</a>
           </Card>
         </div>
       </Container>
@@ -346,13 +348,13 @@ const resources = [
                 </div>
                 <h3 class="resource-title">{resource.title}</h3>
                 <p class="resource-excerpt">{resource.excerpt}</p>
-                <a href="/resources" class="resource-link">Read More →</a>
+                <a href={`${BASE_URL}/resources/`} class="resource-link">Read More →</a>
               </div>
             </Card>
           ))}
         </div>
         <div class="resources-cta">
-          <Button variant="outline" size="lg" href="/resources">
+          <Button variant="outline" size="lg" href={`${BASE_URL}/resources/`}>
             View All Resources
           </Button>
         </div>
@@ -368,10 +370,10 @@ const resources = [
             Start your free 14-day trial. No credit card required.
           </p>
           <div class="cta-buttons">
-            <Button variant="primary" size="lg" href="/contact">
+            <Button variant="primary" size="lg" href={`${BASE_URL}/contact/`}>
               Start Free Trial
             </Button>
-            <Button variant="secondary" size="lg" href="/pricing">
+            <Button variant="secondary" size="lg" href={`${BASE_URL}/pricing/`}>
               View Pricing
             </Button>
           </div>
