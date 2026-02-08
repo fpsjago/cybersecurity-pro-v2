@@ -28,7 +28,7 @@ const _pricingData = [
       { name: 'SIEM/SOAR', included: false },
       { name: 'Custom integrations', included: false }
     ],
-    cta: { label: 'Start Free Trial', href: '/signup?plan=starter' },
+    cta: { label: 'Start Free Trial', href: `${BASE_URL}/contact/` },
     popular: false,
     billingCycle: 'monthly' as const
   },
@@ -48,7 +48,7 @@ const _pricingData = [
       { name: 'SIEM/SOAR', included: false },
       { name: 'Custom integrations', included: false }
     ],
-    cta: { label: 'Start Free Trial', href: '/signup?plan=professional' },
+    cta: { label: 'Start Free Trial', href: `${BASE_URL}/contact/` },
     popular: true,
     billingCycle: 'monthly' as const
   },
@@ -68,7 +68,7 @@ const _pricingData = [
       { name: 'Full SIEM/SOAR platform', included: true },
       { name: 'Unlimited custom integrations', included: true }
     ],
-    cta: { label: 'Start Free Trial', href: '/signup?plan=enterprise' },
+    cta: { label: 'Start Free Trial', href: `${BASE_URL}/contact/` },
     popular: false,
     billingCycle: 'monthly' as const
   },
@@ -88,7 +88,7 @@ const _pricingData = [
       { name: 'Managed security services', included: true },
       { name: 'Full customization', included: true }
     ],
-    cta: { label: 'Contact Sales', href: '/contact?inquiry=custom' },
+    cta: { label: 'Contact Sales', href: `${BASE_URL}/contact/` },
     popular: false,
     billingCycle: 'monthly' as const
   }
