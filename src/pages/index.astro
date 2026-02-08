@@ -1,0 +1,384 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import ParticleNetwork from '../components/effects/ParticleNetwork';
+import Container from '../components/common/Container';
+import Button from '../components/common/Button';
+import Badge from '../components/common/Badge';
+import SectionHeader from '../components/common/SectionHeader';
+import LogoCarousel from '../components/common/LogoCarousel';
+import StatsCounter from '../components/common/StatsCounter';
+import Card from '../components/common/Card';
+import '../styles/homepage.css';
+
+const stats = [
+  { value: 30.9, suffix: 'B+', label: 'Threats Blocked', decimals: 1 },
+  { value: 99.9, suffix: '%', label: 'Uptime SLA', decimals: 1 },
+  { value: 50, suffix: '+', label: 'Industry Awards' },
+  { value: 24, suffix: '/7', label: 'SOC Support' }
+];
+
+const logos = [
+  { name: 'Microsoft', src: 'https://via.placeholder.com/120x40/0078D4/FFFFFF?text=Microsoft' },
+  { name: 'Amazon', src: 'https://via.placeholder.com/120x40/FF9900/FFFFFF?text=Amazon' },
+  { name: 'Goldman Sachs', src: 'https://via.placeholder.com/120x40/0033A0/FFFFFF?text=Goldman' },
+  { name: 'Adobe', src: 'https://via.placeholder.com/120x40/FF0000/FFFFFF?text=Adobe' },
+  { name: 'Salesforce', src: 'https://via.placeholder.com/120x40/00A1E0/FFFFFF?text=Salesforce' },
+  { name: 'Oracle', src: 'https://via.placeholder.com/120x40/F80000/FFFFFF?text=Oracle' },
+  { name: 'IBM', src: 'https://via.placeholder.com/120x40/054ADA/FFFFFF?text=IBM' },
+  { name: 'Cisco', src: 'https://via.placeholder.com/120x40/1BA0D7/FFFFFF?text=Cisco' },
+  { name: 'SAP', src: 'https://via.placeholder.com/120x40/0FAAFF/FFFFFF?text=SAP' },
+  { name: 'Accenture', src: 'https://via.placeholder.com/120x40/A100FF/FFFFFF?text=Accenture' },
+  { name: 'Deloitte', src: 'https://via.placeholder.com/120x40/86BC25/FFFFFF?text=Deloitte' },
+  { name: 'JPMorgan', src: 'https://via.placeholder.com/120x40/0D7680/FFFFFF?text=JPMorgan' }
+];
+
+const features = [
+  {
+    icon: '🛡️',
+    title: 'Endpoint Security',
+    description: 'AI-powered protection for every device with real-time threat detection and automated response.'
+  },
+  {
+    icon: '☁️',
+    title: 'Cloud Security',
+    description: 'CNAPP for multi-cloud environments with unified visibility and compliance management.'
+  },
+  {
+    icon: '🔐',
+    title: 'Identity Access',
+    description: 'Zero trust framework with adaptive authentication and granular access controls.'
+  },
+  {
+    icon: '🎯',
+    title: 'Threat Intelligence',
+    description: 'Real-time analysis of global threat data powered by machine learning algorithms.'
+  },
+  {
+    icon: '🌐',
+    title: 'Network Security',
+    description: 'Complete visibility into network traffic with automated threat prevention.'
+  },
+  {
+    icon: '📧',
+    title: 'Email Security',
+    description: 'Block phishing, malware, and business email compromise before they reach inboxes.'
+  }
+];
+
+const testimonials = [
+  {
+    quote: 'CyberSec Pro reduced our incident response time by 90%. The AI detection caught threats our previous solution completely missed.',
+    author: 'Sarah Chen',
+    role: 'CISO',
+    company: 'Fortune 500 Financial Services',
+    rating: 5
+  },
+  {
+    quote: 'The unified platform gave us visibility we never had before. Game-changing for our security posture.',
+    author: 'Michael Rodriguez',
+    role: 'VP of IT Security',
+    company: 'Global Healthcare Network',
+    rating: 5
+  },
+  {
+    quote: 'Implementation was seamless and the ROI was immediate. Best security investment we\'ve made.',
+    author: 'Jennifer Park',
+    role: 'Chief Security Officer',
+    company: 'Tech Unicorn',
+    rating: 5
+  }
+];
+
+const resources = [
+  {
+    title: 'The State of Ransomware in 2025',
+    category: 'Threat Intel',
+    date: '2025-01-15',
+    readTime: '8 min',
+    excerpt: 'Our latest research reveals evolving tactics and defense strategies...',
+    image: 'https://via.placeholder.com/400x250/06B6D4/FFFFFF?text=Ransomware+Report'
+  },
+  {
+    title: '10 Cloud Security Best Practices',
+    category: 'Best Practices',
+    date: '2025-01-10',
+    readTime: '5 min',
+    excerpt: 'Essential strategies for securing your cloud infrastructure...',
+    image: 'https://via.placeholder.com/400x250/3B82F6/FFFFFF?text=Cloud+Security'
+  },
+  {
+    title: 'Zero Trust Architecture Guide',
+    category: 'Whitepapers',
+    date: '2025-01-05',
+    readTime: '12 min',
+    excerpt: 'Complete guide to implementing zero trust security...',
+    image: 'https://via.placeholder.com/400x250/22C55E/FFFFFF?text=Zero+Trust'
+  }
+];
+---
+
+<BaseLayout title="CyberSec Pro | AI-Powered Cybersecurity Platform">
+  <Header client:load />
+
+  <main>
+    <!-- Section 1: Hero -->
+    <section class="hero">
+      <ParticleNetwork client:idle />
+      <Container>
+        <div class="hero-content">
+          <Badge variant="default">AI-Powered Security Platform</Badge>
+          <h1 class="hero-title">
+            Stop Breaches<br />Before They Start
+          </h1>
+          <p class="hero-subtitle">
+            Enterprise-grade cybersecurity powered by AI. Protect your organization
+            24/7 with real-time threat detection and automated response.
+          </p>
+          <div class="hero-ctas">
+            <Button variant="primary" size="lg" href="/demo">
+              Get Started - Free Trial
+            </Button>
+            <Button variant="outline" size="lg" href="/demo">
+              Watch Demo ▶
+            </Button>
+          </div>
+          <StatsCounter client:visible stats={stats} variant="inline" />
+        </div>
+      </Container>
+    </section>
+
+    <!-- Section 2: Trusted By -->
+    <section class="section trusted-by">
+      <Container>
+        <p class="trusted-by-heading">Trusted by Industry Leaders</p>
+        <LogoCarousel client:visible logos={logos} speed="medium" />
+      </Container>
+    </section>
+
+    <!-- Section 3: Key Features -->
+    <section class="section features">
+      <Container>
+        <SectionHeader
+          badge="COMPLETE SECURITY PLATFORM"
+          title="Everything You Need to Protect Your Organization"
+          subtitle="Comprehensive security solutions powered by AI and machine learning"
+        />
+        <div class="feature-grid">
+          {features.map((feature) => (
+            <Card variant="glass" padding="lg" hover>
+              <div class="feature-icon">{feature.icon}</div>
+              <h3 class="feature-title">{feature.title}</h3>
+              <p class="feature-description">{feature.description}</p>
+            </Card>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <!-- Section 4: Product Showcase (Bento Grid) -->
+    <section class="section product-showcase">
+      <Container>
+        <SectionHeader
+          badge="UNIFIED PLATFORM"
+          title="One Platform, Complete Protection"
+          subtitle="Manage all your security needs from a single, intuitive dashboard"
+        />
+        <div class="bento-grid">
+          <div class="bento-item bento-large">
+            <div class="bento-content">
+              <h3>Unified Dashboard</h3>
+              <p>Real-time visibility across your entire security infrastructure</p>
+              <img src="https://via.placeholder.com/600x400/0F1629/06B6D4?text=Dashboard+Preview" alt="Dashboard" class="bento-image" />
+            </div>
+          </div>
+          <div class="bento-item bento-small">
+            <div class="bento-content">
+              <div class="bento-icon">🔌</div>
+              <h4>API First</h4>
+              <p>Complete programmatic control</p>
+            </div>
+          </div>
+          <div class="bento-item bento-small">
+            <div class="bento-content">
+              <div class="bento-icon">⚡</div>
+              <h4>Webhooks</h4>
+              <p>Real-time event streaming</p>
+            </div>
+          </div>
+          <div class="bento-item bento-small">
+            <div class="bento-content">
+              <div class="bento-icon">🔄</div>
+              <h4>SIEM Integration</h4>
+              <p>Connect to existing tools</p>
+            </div>
+          </div>
+          <div class="bento-item bento-small">
+            <div class="bento-content">
+              <div class="bento-icon">🤖</div>
+              <h4>SOAR Ready</h4>
+              <p>Automated workflows</p>
+            </div>
+          </div>
+          <div class="bento-item bento-wide">
+            <div class="bento-content">
+              <h4>500+ Integrations</h4>
+              <p>Connect with the tools you already use</p>
+              <div class="integration-logos">
+                <span>Splunk</span>
+                <span>ServiceNow</span>
+                <span>Slack</span>
+                <span>Jira</span>
+                <span>+496 more</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Section 5: Solutions -->
+    <section class="section solutions">
+      <Container>
+        <SectionHeader
+          badge="SOLUTIONS"
+          title="Security for Every Challenge"
+          subtitle="Comprehensive protection tailored to your industry and needs"
+        />
+        <div class="solutions-grid">
+          <Card variant="bordered" padding="lg" hover>
+            <div class="solution-icon">🏢</div>
+            <h3 class="solution-title">Enterprise</h3>
+            <p class="solution-description">
+              Complete security suite for large organizations with complex infrastructure
+            </p>
+            <a href="/solutions#enterprise" class="solution-link">Learn More →</a>
+          </Card>
+          <Card variant="bordered" padding="lg" hover>
+            <div class="solution-icon">🏥</div>
+            <h3 class="solution-title">Healthcare</h3>
+            <p class="solution-description">
+              HIPAA-compliant security for protecting sensitive patient data
+            </p>
+            <a href="/solutions#healthcare" class="solution-link">Learn More →</a>
+          </Card>
+          <Card variant="bordered" padding="lg" hover>
+            <div class="solution-icon">🏦</div>
+            <h3 class="solution-title">Financial Services</h3>
+            <p class="solution-description">
+              Bank-grade security meeting PCI-DSS and SOC 2 requirements
+            </p>
+            <a href="/solutions#finance" class="solution-link">Learn More →</a>
+          </Card>
+          <Card variant="bordered" padding="lg" hover>
+            <div class="solution-icon">🛒</div>
+            <h3 class="solution-title">Retail & E-Commerce</h3>
+            <p class="solution-description">
+              Protect customer data and payment information at scale
+            </p>
+            <a href="/solutions#retail" class="solution-link">Learn More →</a>
+          </Card>
+          <Card variant="bordered" padding="lg" hover>
+            <div class="solution-icon">🏛️</div>
+            <h3 class="solution-title">Government</h3>
+            <p class="solution-description">
+              FedRAMP authorized solutions for public sector organizations
+            </p>
+            <a href="/solutions#government" class="solution-link">Learn More →</a>
+          </Card>
+          <Card variant="bordered" padding="lg" hover>
+            <div class="solution-icon">⚙️</div>
+            <h3 class="solution-title">Manufacturing</h3>
+            <p class="solution-description">
+              Secure OT environments and protect intellectual property
+            </p>
+            <a href="/solutions#manufacturing" class="solution-link">Learn More →</a>
+          </Card>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Section 6: Testimonials -->
+    <section class="section testimonials">
+      <Container>
+        <SectionHeader
+          title="What Our Clients Say"
+          subtitle="Trusted by security teams at the world's leading organizations"
+        />
+        <div class="testimonial-carousel">
+          {testimonials.map((testimonial, index) => (
+            <Card key={index} variant="glass" padding="lg" class="testimonial-card">
+              <div class="testimonial-rating">
+                {Array.from({ length: testimonial.rating }).map((_, i) => (
+                  <span key={i} class="star">★</span>
+                ))}
+              </div>
+              <blockquote class="testimonial-quote">"{testimonial.quote}"</blockquote>
+              <div class="testimonial-author">
+                <div class="author-info">
+                  <div class="author-name">{testimonial.author}</div>
+                  <div class="author-role">{testimonial.role}, {testimonial.company}</div>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <!-- Section 7: Resources -->
+    <section class="section resources">
+      <Container>
+        <SectionHeader
+          badge="RESOURCES"
+          title="Latest Insights & Research"
+          subtitle="Stay ahead of threats with our security intelligence"
+        />
+        <div class="resources-grid">
+          {resources.map((resource) => (
+            <Card variant="default" padding="none" hover>
+              <img src={resource.image} alt={resource.title} class="resource-image" />
+              <div class="resource-content">
+                <div class="resource-meta">
+                  <Badge variant="info" size="sm">{resource.category}</Badge>
+                  <span class="resource-date">{resource.readTime} read</span>
+                </div>
+                <h3 class="resource-title">{resource.title}</h3>
+                <p class="resource-excerpt">{resource.excerpt}</p>
+                <a href="/resources" class="resource-link">Read More →</a>
+              </div>
+            </Card>
+          ))}
+        </div>
+        <div class="resources-cta">
+          <Button variant="outline" size="lg" href="/resources">
+            View All Resources
+          </Button>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Section 8: CTA Section -->
+    <section class="section cta-section">
+      <Container>
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to Secure Your Organization?</h2>
+          <p class="cta-subtitle">
+            Start your free 14-day trial. No credit card required.
+          </p>
+          <div class="cta-buttons">
+            <Button variant="primary" size="lg" href="/demo">
+              Start Free Trial
+            </Button>
+            <Button variant="secondary" size="lg" href="/contact">
+              Talk to Sales
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

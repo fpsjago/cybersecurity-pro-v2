@@ -1,0 +1,311 @@
+---
+import SolutionCard from '../components/sections/SolutionCard';
+import IntegrationLogo from '../components/sections/IntegrationLogo';
+import CaseStudyCard from '../components/sections/CaseStudyCard';
+import '../styles/design-system.css';
+import '../styles/animations.css';
+
+const solutions = [
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    title: 'Endpoint Detection & Response (EDR)',
+    description: 'AI-powered endpoint protection that stops threats before they impact your business. Real-time detection, automated response, and 24/7 monitoring.',
+    features: [
+      'Real-time threat detection with AI/ML',
+      'Automated incident response',
+      'Behavioral analysis & threat hunting',
+      'Ransomware rollback protection'
+    ],
+    stats: [
+      { label: 'Threats Blocked Daily', value: '10M+' },
+      { label: 'Detection Accuracy', value: '99.9%' }
+    ],
+    cta: { label: 'Learn More', href: '/products' }
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>',
+    title: 'Cloud Security (CNAPP)',
+    description: 'Unified cloud-native application protection platform. Secure your multi-cloud environment with comprehensive visibility and compliance.',
+    features: [
+      'Multi-cloud security posture management',
+      'Container & Kubernetes security',
+      'Cloud workload protection',
+      'Compliance automation (SOC2, ISO27001)'
+    ],
+    stats: [
+      { label: 'Cloud Assets Protected', value: '500K+' },
+      { label: 'Compliance Score', value: '98%' }
+    ],
+    cta: { label: 'Learn More', href: '/products' }
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>',
+    title: 'Network Security (SASE/ZTNA)',
+    description: 'Zero Trust Network Access that secures your distributed workforce. Secure access to applications without exposing your network.',
+    features: [
+      'Zero Trust architecture',
+      'Secure remote access (ZTNA)',
+      'Cloud-delivered firewall',
+      'DDoS protection & WAF'
+    ],
+    stats: [
+      { label: 'Network Coverage', value: '150+ PoPs' },
+      { label: 'Latency', value: '<10ms' }
+    ],
+    cta: { label: 'Learn More', href: '/products' }
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6m3-3h-6"/></svg>',
+    title: 'Identity & Access Management (IAM)',
+    description: 'Passwordless authentication and identity governance. Protect user access with multi-factor authentication and single sign-on.',
+    features: [
+      'Multi-factor authentication (MFA)',
+      'Single Sign-On (SSO)',
+      'Privileged access management',
+      'Identity governance & lifecycle'
+    ],
+    stats: [
+      { label: 'Users Protected', value: '2M+' },
+      { label: 'Auth Success Rate', value: '99.99%' }
+    ],
+    cta: { label: 'Learn More', href: '/products' }
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    title: 'Security Operations (SIEM/SOAR)',
+    description: 'Security Information and Event Management with automated response orchestration. Detect, investigate, and respond to threats faster.',
+    features: [
+      'Real-time log analysis & correlation',
+      'Automated playbooks (SOAR)',
+      'Threat intelligence integration',
+      'Forensics & incident investigation'
+    ],
+    stats: [
+      { label: 'Events/Second', value: '1M+' },
+      { label: 'MTTR Reduction', value: '85%' }
+    ],
+    cta: { label: 'Learn More', href: '/products' }
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+    title: 'Threat Intelligence',
+    description: 'Real-time threat intelligence powered by global data. Stay ahead of emerging threats with actionable insights.',
+    features: [
+      'Global threat intelligence feeds',
+      'IOC (Indicators of Compromise) analysis',
+      'Threat actor profiling',
+      'Predictive threat modeling'
+    ],
+    stats: [
+      { label: 'Threat Feeds', value: '200+' },
+      { label: 'IOCs Analyzed Daily', value: '50M+' }
+    ],
+    cta: { label: 'Learn More', href: '/products' }
+  }
+];
+
+const integrations = [
+  { name: 'Microsoft', logo: 'https://via.placeholder.com/80?text=MS', category: 'Cloud' },
+  { name: 'AWS', logo: 'https://via.placeholder.com/80?text=AWS', category: 'Cloud' },
+  { name: 'Google Cloud', logo: 'https://via.placeholder.com/80?text=GCP', category: 'Cloud' },
+  { name: 'Azure', logo: 'https://via.placeholder.com/80?text=Azure', category: 'Cloud' },
+  { name: 'Okta', logo: 'https://via.placeholder.com/80?text=Okta', category: 'Identity' },
+  { name: 'Duo', logo: 'https://via.placeholder.com/80?text=Duo', category: 'Identity' },
+  { name: 'ServiceNow', logo: 'https://via.placeholder.com/80?text=SN', category: 'ITSM' },
+  { name: 'Slack', logo: 'https://via.placeholder.com/80?text=Slack', category: 'Communication' },
+  { name: 'Splunk', logo: 'https://via.placeholder.com/80?text=Splunk', category: 'SIEM' },
+  { name: 'Palo Alto', logo: 'https://via.placeholder.com/80?text=PANW', category: 'Security' },
+  { name: 'Cisco', logo: 'https://via.placeholder.com/80?text=Cisco', category: 'Network' },
+  { name: 'Fortinet', logo: 'https://via.placeholder.com/80?text=Fortinet', category: 'Security' }
+];
+
+const caseStudies = [
+  {
+    company: 'Global Financial Services',
+    industry: 'Finance',
+    challenge: 'Faced sophisticated APT attacks targeting customer financial data with 200+ daily security incidents overwhelming their SOC team.',
+    solution: 'Deployed our EDR + SIEM/SOAR platform with automated playbooks and AI-powered threat detection.',
+    results: 'Reduced incident response time by 90%, blocked 50,000+ threats, and achieved SOC2 compliance.',
+    metrics: [
+      { label: 'Incident Reduction', value: '90%' },
+      { label: 'Response Time', value: '<1min' },
+      { label: 'Threats Blocked', value: '50K+' }
+    ],
+    image: 'https://via.placeholder.com/600x400?text=Finance+Case',
+    logo: 'https://via.placeholder.com/80?text=Bank'
+  },
+  {
+    company: 'Healthcare Network',
+    industry: 'Healthcare',
+    challenge: 'Ransomware attack encrypted critical patient records. Needed enterprise-grade protection for 50+ hospital locations.',
+    solution: 'Implemented Cloud Security + Endpoint Protection with ransomware rollback and 24/7 threat monitoring.',
+    results: 'Zero ransomware incidents in 2 years, $5M in potential damages prevented, HIPAA compliance achieved.',
+    metrics: [
+      { label: 'Savings', value: '$5M' },
+      { label: 'Incidents', value: '0' },
+      { label: 'Uptime', value: '99.99%' }
+    ],
+    image: 'https://via.placeholder.com/600x400?text=Healthcare+Case',
+    logo: 'https://via.placeholder.com/80?text=Health'
+  },
+  {
+    company: 'E-commerce Leader',
+    industry: 'Retail',
+    challenge: 'DDoS attacks during peak shopping season causing $100K/hour in lost revenue. Needed scalable protection.',
+    solution: 'Deployed SASE with cloud-delivered DDoS protection, WAF, and zero-trust network access.',
+    results: 'Mitigated 300+ attacks, zero downtime during Black Friday, 40% reduction in security costs.',
+    metrics: [
+      { label: 'Attacks Blocked', value: '300+' },
+      { label: 'Downtime', value: '0hrs' },
+      { label: 'Cost Savings', value: '40%' }
+    ],
+    image: 'https://via.placeholder.com/600x400?text=Retail+Case',
+    logo: 'https://via.placeholder.com/80?text=Retail'
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Solutions | CyberSec Pro</title>
+  <meta name="description" content="Comprehensive cybersecurity solutions for every threat. EDR, Cloud Security, IAM, SIEM/SOAR, and more." />
+  <link rel="icon" href="/favicon.ico" />
+</head>
+<body>
+  <main>
+    <!-- Hero Section -->
+    <section class="section" style="background: var(--gradient-hero);">
+      <div class="container">
+        <nav style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">
+          <a href="/" style="color: var(--color-primary-500);">Home</a> / <span>Solutions</span>
+        </nav>
+        <h1 style="font-size: var(--text-6xl); font-weight: var(--font-extrabold); color: var(--color-text-primary); margin-bottom: var(--space-4); line-height: var(--leading-tight);">
+          Security Solutions for <span style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Every Threat</span>
+        </h1>
+        <p style="font-size: var(--text-xl); color: var(--color-text-secondary); max-width: 700px; line-height: var(--leading-relaxed);">
+          Comprehensive protection across endpoints, cloud, network, and identity. Built for enterprise security teams.
+        </p>
+      </div>
+    </section>
+
+    <!-- Platform Overview -->
+    <section class="section">
+      <div class="container">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto var(--space-16);">
+          <h2 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--color-text-primary); margin-bottom: var(--space-4);">
+            Unified Security Platform
+          </h2>
+          <p style="font-size: var(--text-lg); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+            One platform, six integrated solutions. Protect your entire digital infrastructure from a single pane of glass.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-8);">
+          {[
+            { label: 'Detection Accuracy', value: '99.9%' },
+            { label: 'Response Time', value: '<1min' },
+            { label: 'Threats Blocked', value: '30.9B' },
+            { label: 'Global Coverage', value: '150+ PoPs' }
+          ].map(stat => (
+            <div style="text-align: center; padding: var(--space-6); background: var(--color-bg-card); border: 1px solid var(--color-border-primary); border-radius: var(--radius-xl);">
+              <div style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: var(--space-2);">
+                {stat.value}
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: var(--tracking-wider);">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Solutions Grid -->
+    <section class="section" style="background: var(--color-bg-secondary);">
+      <div class="container">
+        <h2 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--color-text-primary); text-align: center; margin-bottom: var(--space-12);">
+          Six Solutions. Complete Protection.
+        </h2>
+        
+        <div class="staggerGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--space-8);">
+          {solutions.map(solution => (
+            <SolutionCard {...solution} client:load />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Integrations -->
+    <section class="section">
+      <div class="container">
+        <h2 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--color-text-primary); text-align: center; margin-bottom: var(--space-4);">
+          200+ Integrations
+        </h2>
+        <p style="font-size: var(--text-lg); color: var(--color-text-secondary); text-align: center; max-width: 600px; margin: 0 auto var(--space-12);">
+          Seamlessly integrate with your existing security stack, cloud platforms, and business tools.
+        </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-6);">
+          {integrations.map(integration => (
+            <IntegrationLogo {...integration} client:load />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section" style="background: var(--color-bg-secondary);">
+      <div class="container">
+        <h2 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--color-text-primary); text-align: center; margin-bottom: var(--space-4);">
+          Customer Success Stories
+        </h2>
+        <p style="font-size: var(--text-lg); color: var(--color-text-secondary); text-align: center; max-width: 600px; margin: 0 auto var(--space-12);">
+          See how organizations like yours stopped threats and transformed their security posture.
+        </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--space-8);">
+          {caseStudies.map(caseStudy => (
+            <CaseStudyCard {...caseStudy} client:load />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: var(--gradient-primary); text-align: center;">
+      <div class="container">
+        <h2 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: white; margin-bottom: var(--space-4);">
+          Ready to Transform Your Security?
+        </h2>
+        <p style="font-size: var(--text-xl); color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 0 auto var(--space-8);">
+          Start your free 14-day trial. No credit card required.
+        </p>
+        <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+          <a href="/pricing" style="padding: var(--space-4) var(--space-8); background: white; color: var(--color-primary-500); border-radius: var(--radius-lg); font-weight: var(--font-semibold); box-shadow: var(--shadow-xl);">
+            Start Free Trial
+          </a>
+          <a href="/contact" style="padding: var(--space-4) var(--space-8); background: transparent; color: white; border: 2px solid white; border-radius: var(--radius-lg); font-weight: var(--font-semibold);">
+            Talk to Sales
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Stagger animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.staggerGrid').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+---
+import FilterBar from '../components/portfolio/FilterBar';
+import CaseStudyCardLarge from '../components/portfolio/CaseStudyCardLarge';
+import ClientTestimonialCard from '../components/portfolio/ClientTestimonialCard';
+import MetricCard from '../components/portfolio/MetricCard';
+
+const caseStudies = [
+  {
+    company: 'Global Financial Services',
+    industry: 'Finance',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=450&fit=crop',
+    challenge: 'A Fortune 500 bank faced sophisticated APT attacks targeting customer data. Legacy security tools failed to detect modern attack techniques.',
+    solution: 'Deployed CyberSec Pro Zero Trust architecture with AI-powered threat detection across 50,000+ endpoints. Integrated with existing SIEM infrastructure.',
+    results: 'Detected and blocked 3 active APT campaigns within first 48 hours. Reduced incident response time from 8 hours to under 5 minutes.',
+    metrics: [
+      { label: 'Threat Reduction', value: '90%' },
+      { label: 'Response Time', value: '<5 min' },
+      { label: 'Annual Savings', value: '$5M' }
+    ],
+    testimonial: {
+      quote: 'CyberSec Pro stopped attacks our $10M legacy solution completely missed. The ROI was clear within the first month.',
+      author: 'Michael Chen',
+      role: 'CISO, Global Financial Services'
+    }
+  },
+  {
+    company: 'Healthcare Network',
+    industry: 'Healthcare',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=450&fit=crop',
+    challenge: 'Multi-hospital network struggled with HIPAA compliance and ransomware threats across 200+ locations.',
+    solution: 'Implemented automated compliance monitoring, endpoint protection, and 24/7 SOC services. Zero-trust access for remote medical staff.',
+    results: 'Achieved full HIPAA compliance in 90 days. Zero ransomware incidents in 18 months. Reduced compliance audit time by 75%.',
+    metrics: [
+      { label: 'Compliance Score', value: '100%' },
+      { label: 'Incidents Prevented', value: '1,200+' },
+      { label: 'Cost Savings', value: '$2M' }
+    ],
+    testimonial: {
+      quote: 'Patient data security is our top priority. CyberSec Pro gave us enterprise-grade protection at a price we could afford.',
+      author: 'Dr. Sarah Williams',
+      role: 'CIO, Regional Healthcare Network'
+    }
+  },
+  {
+    company: 'Tech Unicorn',
+    industry: 'Technology',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=450&fit=crop',
+    challenge: 'Fast-growing SaaS company with 5,000+ cloud workloads needed scalable security that wouldn\'t slow development velocity.',
+    solution: 'Cloud-native CNAPP deployment with DevSecOps integration. Automated security scanning in CI/CD pipelines.',
+    results: 'Secured 100% of cloud workloads. Zero security-related deployment delays. Passed SOC 2 Type II audit on first try.',
+    metrics: [
+      { label: 'Workloads Protected', value: '5,000+' },
+      { label: 'Deployment Impact', value: '0%' },
+      { label: 'Time to Compliance', value: '60 days' }
+    ],
+    testimonial: {
+      quote: 'Security that actually accelerates our development. The developer experience is phenomenal.',
+      author: 'Jake Morrison',
+      role: 'VP Engineering, Tech Unicorn'
+    }
+  },
+  {
+    company: 'Retail Corporation',
+    industry: 'Retail',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=450&fit=crop',
+    challenge: 'National retailer needed PCI DSS compliance across 500+ stores and e-commerce platform processing $1B+ annually.',
+    solution: 'Deployed network segmentation, point-of-sale encryption, and continuous compliance monitoring. Real-time threat intelligence.',
+    results: 'Achieved PCI DSS Level 1 certification. Blocked 50,000+ payment fraud attempts. Zero data breaches in 24 months.',
+    metrics: [
+      { label: 'PCI Compliance', value: 'Level 1' },
+      { label: 'Fraud Blocked', value: '50K+' },
+      { label: 'Data Breaches', value: '0' }
+    ],
+    testimonial: {
+      quote: 'Customer trust is everything in retail. CyberSec Pro protects both our business and our customers.',
+      author: 'Amanda Foster',
+      role: 'VP IT Security, National Retail Corp'
+    }
+  },
+  {
+    company: 'Manufacturing Giant',
+    industry: 'Manufacturing',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=450&fit=crop',
+    challenge: 'Industrial manufacturer with OT/IT convergence risks. Legacy systems and modern IoT devices on same network.',
+    solution: 'Implemented OT security monitoring, network segmentation, and anomaly detection for industrial control systems.',
+    results: 'Detected and prevented attempted sabotage of production line. 24/7 visibility into OT environment. Zero production downtime.',
+    metrics: [
+      { label: 'OT Assets Protected', value: '10,000+' },
+      { label: 'Threats Detected', value: '200+' },
+      { label: 'Production Downtime', value: '0%' }
+    ],
+    testimonial: {
+      quote: 'First security solution that actually understands industrial environments. Saved us from a $50M production disruption.',
+      author: 'Robert Hansen',
+      role: 'Director of Operations, Manufacturing Corp'
+    }
+  },
+  {
+    company: 'Federal Agency',
+    industry: 'Government',
+    image: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=800&h=450&fit=crop',
+    challenge: 'Government agency required FedRAMP High authorization while maintaining mission-critical uptime requirements.',
+    solution: 'Built FedRAMP-compliant infrastructure with continuous monitoring, air-gapped deployment options, and 24/7 SOC.',
+    results: 'Achieved FedRAMP High authorization in 12 months. Passed all 325+ security controls. 99.99% uptime maintained.',
+    metrics: [
+      { label: 'FedRAMP Level', value: 'High' },
+      { label: 'Controls Passed', value: '325+' },
+      { label: 'Uptime', value: '99.99%' }
+    ],
+    testimonial: {
+      quote: 'CyberSec Pro met requirements we thought were impossible for a commercial solution. Exceptional team and technology.',
+      author: 'Colonel James Mitchell (Ret.)',
+      role: 'CISO, Federal Agency'
+    }
+  }
+];
+
+const clientTestimonials = [
+  {
+    quote: 'The AI-powered threat detection is like having 100 security analysts working 24/7. It catches things humans would miss.',
+    author: 'Lisa Thompson',
+    role: 'VP Security',
+    company: 'Fortune 100 Tech Company',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
+  },
+  {
+    quote: 'Best security investment we\'ve made. ROI was positive in the first quarter. The platform just works.',
+    author: 'David Park',
+    role: 'CTO',
+    company: 'Series B Startup',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop'
+  },
+  {
+    quote: 'Migrated from three different security vendors to CyberSec Pro. Saved $2M annually and improved our security posture.',
+    author: 'Maria Garcia',
+    role: 'CISO',
+    company: 'Global Manufacturing',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop'
+  }
+];
+
+const aggregateMetrics = [
+  { value: '90%', label: 'Average Threat Reduction', description: 'Across all customers in first 90 days' },
+  { value: '$50M+', label: 'Total Saved', description: 'Annual cost savings for customers', trend: { value: '25%', positive: true } },
+  { value: '500+', label: 'Enterprises Protected', description: 'From startups to Fortune 500', trend: { value: '40%', positive: true } },
+  { value: '4.9/5', label: 'Customer Rating', description: 'Average satisfaction score', trend: { value: '0.2', positive: true } }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - CyberSec Pro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0e1a;
+      color: #f8fafc;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0a0e1a 0%, #1e3a8a 100%);
+      padding: 8rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #06b6d4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.75rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #94a3b8;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.625;
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #06b6d4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: #94a3b8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    /* Case Studies */
+    .case-studies-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      margin: 3rem 0;
+    }
+
+    /* Testimonials Grid */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      padding: 4rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .cta-section p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: #fff;
+      color: #06b6d4;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="hero-badge">Success Stories</span>
+      <h1>
+        Real Results from<br/>
+        <span class="hero-highlight">Real Customers</span>
+      </h1>
+      <p>
+        See how organizations across industries use CyberSec Pro to stop threats, 
+        achieve compliance, and protect what matters most.
+      </p>
+    </div>
+  </section>
+
+  <!-- Aggregate Metrics -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Impact</span>
+        <h2 class="section-title">Results Across All Customers</h2>
+      </div>
+      <div class="metrics-grid">
+        {aggregateMetrics.map(metric => (
+          <MetricCard client:load {...metric} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="section">
+    <div class="container">
+      <FilterBar 
+        client:load
+        categories={['Finance', 'Healthcare', 'Technology', 'Retail', 'Manufacturing', 'Government']}
+        onFilter={(category) => console.log('Filter:', category)}
+      />
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section class="section">
+    <div class="container">
+      <div class="case-studies-grid">
+        {caseStudies.map(study => (
+          <CaseStudyCardLarge client:load {...study} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Testimonials -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Testimonials</span>
+        <h2 class="section-title">What Our Clients Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        {clientTestimonials.map(testimonial => (
+          <ClientTestimonialCard client:load {...testimonial} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-section">
+        <h2>Ready to Join Our Success Stories?</h2>
+        <p>Let's discuss how CyberSec Pro can protect your organization</p>
+        <a href="/contact" class="cta-button">
+          Schedule a Demo
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M7.5 15l5-5-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

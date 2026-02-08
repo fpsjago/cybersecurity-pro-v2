@@ -1,0 +1,575 @@
+---
+import MissionCard from '../components/about/MissionCard';
+import ValueCard from '../components/about/ValueCard';
+import Timeline from '../components/about/Timeline';
+import AwardBadge from '../components/about/AwardBadge';
+import BenefitCard from '../components/about/BenefitCard';
+
+const timelineData = [
+  { year: '2015', title: 'Company Founded', description: 'Started in Austin, TX with a mission to democratize enterprise security' },
+  { year: '2017', title: 'Series A Funding', description: '$10M raised to expand our AI-powered threat detection platform' },
+  { year: '2019', title: '10,000+ Customers', description: 'Reached major milestone serving enterprises worldwide' },
+  { year: '2021', title: 'Series B Funding', description: '$50M to accelerate product development and global expansion' },
+  { year: '2023', title: 'Gartner Leader', description: 'Named a Leader in Gartner Magic Quadrant for Endpoint Protection' },
+  { year: '2025', title: '500K+ Users', description: 'Protecting over half a million users across 120+ countries' },
+  { year: '2026', title: 'AI Security Platform', description: 'Launched next-gen AI-native security operations platform' }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - CyberSec Pro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0e1a;
+      color: #f8fafc;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0a0e1a 0%, #1e3a8a 100%);
+      padding: 8rem 0 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #06b6d4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.75rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #94a3b8;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      line-height: 1.625;
+    }
+
+    .hero-images {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-image {
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(15,22,41,0.8);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      padding: 4rem 0;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #06b6d4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: #94a3b8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Mission Vision Grid */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Awards Grid */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Benefits Grid */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 800px;
+      margin: 3rem auto;
+    }
+
+    .benefits-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .benefits-header h3 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .benefits-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .benefit-stat {
+      text-align: center;
+    }
+
+    .benefit-stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #06b6d4;
+    }
+
+    .benefit-stat-label {
+      font-size: 0.875rem;
+      color: #94a3b8;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      padding: 4rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .cta-section p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: #fff;
+      color: #06b6d4;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero-images { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .mission-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .awards-grid { grid-template-columns: repeat(3, 1fr); }
+      .benefits-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="hero-badge">About CyberSec Pro</span>
+      <h1>
+        Securing the Digital World,<br/>
+        <span class="hero-highlight">One Organization at a Time</span>
+      </h1>
+      <p>
+        Since 2015, we've been on a mission to make enterprise-grade cybersecurity 
+        accessible to organizations of all sizes. Powered by AI, trusted by thousands.
+      </p>
+      <div class="hero-images">
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop" alt="Team collaboration" />
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" alt="Office space" />
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop" alt="Modern workspace" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section">
+    <div class="container">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value">500K+</div>
+          <div class="stat-label">Protected Users</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">99.9%</div>
+          <div class="stat-label">Uptime SLA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">30.9B</div>
+          <div class="stat-label">Threats Blocked</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">120+</div>
+          <div class="stat-label">Countries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Our Purpose</span>
+        <h2 class="section-title">Mission & Vision</h2>
+        <p class="section-subtitle">
+          Driven by a singular goal: making world-class security accessible to everyone
+        </p>
+      </div>
+      <div class="mission-grid">
+        <MissionCard 
+          client:load
+          type="mission"
+          title="Our Mission"
+          description="To empower organizations of all sizes with AI-powered security solutions that are powerful, affordable, and easy to deploy. We believe every business deserves enterprise-grade protection."
+          icon="🎯"
+        />
+        <MissionCard 
+          client:load
+          type="vision"
+          title="Our Vision"
+          description="A world where cyber threats are neutralized before they cause harm. Where security is proactive, not reactive. Where AI works 24/7 to protect what matters most to your business."
+          icon="🔮"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">What We Stand For</span>
+        <h2 class="section-title">Core Values</h2>
+      </div>
+      <div class="values-grid">
+        <ValueCard 
+          client:load
+          icon="🛡️"
+          title="Security First"
+          description="Every decision starts with security. We protect our customers like we protect ourselves."
+        />
+        <ValueCard 
+          client:load
+          icon="🚀"
+          title="Innovation"
+          description="Constantly pushing boundaries with AI and automation to stay ahead of threats."
+        />
+        <ValueCard 
+          client:load
+          icon="🤝"
+          title="Customer Success"
+          description="Your success is our success. We're partners in your security journey."
+        />
+        <ValueCard 
+          client:load
+          icon="🌍"
+          title="Global Impact"
+          description="Making the internet safer for everyone, one organization at a time."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Our Journey</span>
+        <h2 class="section-title">Company Milestones</h2>
+      </div>
+      <Timeline client:load items={timelineData} />
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Recognition</span>
+        <h2 class="section-title">Industry Awards</h2>
+      </div>
+      <div class="awards-grid">
+        <AwardBadge 
+          client:load
+          title="Leader"
+          organization="Gartner Magic Quadrant"
+          year="2025"
+          description="Endpoint Protection Platforms"
+        />
+        <AwardBadge 
+          client:load
+          title="Strong Performer"
+          organization="Forrester Wave"
+          year="2025"
+          description="EDR Solutions"
+        />
+        <AwardBadge 
+          client:load
+          title="Leader"
+          organization="G2 Grid"
+          year="2025"
+          description="Fall 2025"
+        />
+        <AwardBadge 
+          client:load
+          title="Top 10"
+          organization="MITRE ATT&CK"
+          year="2024"
+          description="Evaluations"
+        />
+        <AwardBadge 
+          client:load
+          title="Best Security"
+          organization="SC Awards"
+          year="2024"
+          description="Platform"
+        />
+        <AwardBadge 
+          client:load
+          title="Innovation"
+          organization="CyberSecurity Breakthrough"
+          year="2025"
+          description="AI Security"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Culture & Careers -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Join Us</span>
+        <h2 class="section-title">Life at CyberSec Pro</h2>
+      </div>
+
+      <div class="benefits-header">
+        <h3>Why Work With Us</h3>
+        <div class="benefits-stats">
+          <div class="benefit-stat">
+            <div class="benefit-stat-value">450+</div>
+            <div class="benefit-stat-label">Team Members</div>
+          </div>
+          <div class="benefit-stat">
+            <div class="benefit-stat-value">15</div>
+            <div class="benefit-stat-label">Global Offices</div>
+          </div>
+          <div class="benefit-stat">
+            <div class="benefit-stat-value">4.8/5</div>
+            <div class="benefit-stat-label">Glassdoor Rating</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="benefits-grid">
+        <BenefitCard 
+          client:load
+          icon="💰"
+          title="Competitive Salary"
+          description="Top-tier compensation packages with equity options"
+        />
+        <BenefitCard 
+          client:load
+          icon="🏥"
+          title="Health & Wellness"
+          description="Comprehensive health, dental, and vision coverage"
+        />
+        <BenefitCard 
+          client:load
+          icon="🏖️"
+          title="Unlimited PTO"
+          description="Take the time you need to recharge"
+        />
+        <BenefitCard 
+          client:load
+          icon="🎓"
+          title="Learning Budget"
+          description="$5K annual budget for courses and conferences"
+        />
+        <BenefitCard 
+          client:load
+          icon="🏠"
+          title="Remote First"
+          description="Work from anywhere with flexible hours"
+        />
+        <BenefitCard 
+          client:load
+          icon="👶"
+          title="Parental Leave"
+          description="16 weeks paid leave for all parents"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-section">
+        <h2>Ready to Join Our Mission?</h2>
+        <p>We're always looking for talented people who share our passion for security</p>
+        <a href="/team" class="cta-button">
+          View Open Positions
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M7.5 15l5-5-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

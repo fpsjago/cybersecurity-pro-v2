@@ -1,0 +1,481 @@
+---
+import TeamMemberCard from '../components/team/TeamMemberCard';
+import OrgChart from '../components/team/OrgChart';
+import JobListing from '../components/team/JobListing';
+
+const teamMembers = [
+  {
+    name: 'Alex Thompson',
+    role: 'CEO & Co-Founder',
+    bio: '15+ years in cybersecurity. Previously VP of Security at Fortune 500. MIT Computer Science.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+    linkedin: 'https://linkedin.com'
+  },
+  {
+    name: 'Sarah Chen',
+    role: 'CTO & Co-Founder',
+    bio: 'Former Lead Security Engineer at Google. Stanford CS PhD. 20+ patents in ML security.',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
+    linkedin: 'https://linkedin.com'
+  },
+  {
+    name: 'Marcus Rodriguez',
+    role: 'CPO - Chief Product Officer',
+    bio: '10 years building security products. Ex-Microsoft Azure Security. Customer-obsessed product leader.',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
+    linkedin: 'https://linkedin.com'
+  },
+  {
+    name: 'Emily Watson',
+    role: 'CRO - Chief Revenue Officer',
+    bio: 'Built sales teams from 0 to $100M ARR. Previously at Salesforce and Palo Alto Networks.',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
+    linkedin: 'https://linkedin.com'
+  },
+  {
+    name: 'Dr. James Park',
+    role: 'CAO - Chief AI Officer',
+    bio: 'PhD in Machine Learning from Berkeley. Published 50+ papers on AI security and threat detection.',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
+    linkedin: 'https://linkedin.com'
+  },
+  {
+    name: 'Rachel Kim',
+    role: 'CISO - Chief Information Security Officer',
+    bio: 'CISSP, CISM certified. 18 years in security operations. Ex-NSA cyber defense analyst.',
+    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop',
+    linkedin: 'https://linkedin.com'
+  }
+];
+
+const orgChartData = {
+  name: 'Alex Thompson',
+  role: 'CEO',
+  image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
+  children: [
+    {
+      name: 'Sarah Chen',
+      role: 'CTO',
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+      children: [
+        { name: 'Engineering', role: '45 Engineers', image: undefined, children: [] },
+        { name: 'Research', role: '12 Scientists', image: undefined, children: [] }
+      ]
+    },
+    {
+      name: 'Marcus Rodriguez',
+      role: 'CPO',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop',
+      children: [
+        { name: 'Product', role: '18 PMs', image: undefined, children: [] },
+        { name: 'Design', role: '8 Designers', image: undefined, children: [] }
+      ]
+    },
+    {
+      name: 'Emily Watson',
+      role: 'CRO',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop',
+      children: [
+        { name: 'Sales', role: '65 Reps', image: undefined, children: [] },
+        { name: 'Marketing', role: '22 Members', image: undefined, children: [] }
+      ]
+    }
+  ]
+};
+
+const openPositions = [
+  { title: 'Senior Security Engineer', department: 'Engineering', location: 'Remote (US)', type: 'Full-time' },
+  { title: 'ML Research Scientist', department: 'Research', location: 'San Francisco, CA', type: 'Full-time' },
+  { title: 'Product Manager - Threat Intel', department: 'Product', location: 'Austin, TX', type: 'Full-time' },
+  { title: 'Enterprise Account Executive', department: 'Sales', location: 'New York, NY', type: 'Full-time' },
+  { title: 'Security Analyst', department: 'Operations', location: 'Remote (Global)', type: 'Full-time' },
+  { title: 'DevOps Engineer', department: 'Engineering', location: 'Remote (US)', type: 'Full-time' }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team - CyberSec Pro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0e1a;
+      color: #f8fafc;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0a0e1a 0%, #1e3a8a 100%);
+      padding: 8rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #06b6d4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.75rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #94a3b8;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.625;
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #06b6d4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: #94a3b8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    /* Team Stats */
+    .team-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 3rem;
+      background: rgba(15,22,41,0.6);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      border-radius: 12px;
+      margin: 4rem 0;
+    }
+
+    .team-stat {
+      text-align: center;
+    }
+
+    .team-stat-value {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-stat-label {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .value-card {
+      background: rgba(15,22,41,0.8);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .value-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(6, 182, 212, 0.3);
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.15);
+    }
+
+    /* Jobs Section */
+    .jobs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      padding: 4rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .cta-section p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: #fff;
+      color: #06b6d4;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .team-grid { grid-template-columns: 1fr; }
+      .team-stats { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="hero-badge">Our Team</span>
+      <h1>
+        Meet the Experts<br/>
+        <span class="hero-highlight">Behind the Security</span>
+      </h1>
+      <p>
+        A diverse team of cybersecurity veterans, AI researchers, and product innovators 
+        united by one mission: making the internet safer for everyone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Leadership Team -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Leadership</span>
+        <h2 class="section-title">Executive Team</h2>
+        <p class="section-subtitle">
+          Decades of combined experience in cybersecurity, AI, and enterprise software
+        </p>
+      </div>
+      <div class="team-grid">
+        {teamMembers.map(member => (
+          <TeamMemberCard client:load {...member} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Org Chart -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Structure</span>
+        <h2 class="section-title">Organization</h2>
+      </div>
+      <OrgChart client:load data={orgChartData} />
+    </div>
+  </section>
+
+  <!-- Team Stats -->
+  <section class="section">
+    <div class="container">
+      <div class="team-stats">
+        <div class="team-stat">
+          <div class="team-stat-value">450+</div>
+          <div class="team-stat-label">Team Members</div>
+        </div>
+        <div class="team-stat">
+          <div class="team-stat-value">35</div>
+          <div class="team-stat-label">Countries</div>
+        </div>
+        <div class="team-stat">
+          <div class="team-stat-value">15</div>
+          <div class="team-stat-label">Global Offices</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Culture</span>
+        <h2 class="section-title">Our Values</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🛡️</div>
+          <div class="value-title">Security First</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🚀</div>
+          <div class="value-title">Innovation</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <div class="value-title">Customer Success</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🌍</div>
+          <div class="value-title">Global Impact</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Join Us</span>
+        <h2 class="section-title">Open Positions</h2>
+        <p class="section-subtitle">
+          We're hiring talented people who want to make a difference in cybersecurity
+        </p>
+      </div>
+      <div class="jobs-list">
+        {openPositions.map(job => (
+          <JobListing client:load {...job} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-section">
+        <h2>Don't See the Perfect Role?</h2>
+        <p>We're always open to meeting exceptional talent. Send us your resume!</p>
+        <a href="mailto:careers@cybersecpro.com" class="cta-button">
+          Contact Careers Team
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M7.5 15l5-5-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

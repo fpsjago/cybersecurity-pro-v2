@@ -1,0 +1,135 @@
+.footer {
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border-primary);
+  padding: var(--space-16) 0 var(--space-8);
+  margin-top: var(--space-24);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  margin-bottom: var(--space-12);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.logoIcon {
+  font-size: var(--text-3xl);
+}
+
+.tagline {
+  color: var(--color-text-secondary);
+  max-width: 280px;
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-primary);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-bold);
+  transition: all 0.2s ease;
+}
+
+.social:hover {
+  background: var(--color-bg-card-hover);
+  border-color: var(--color-border-hover);
+  color: var(--color-primary-400);
+}
+
+.heading {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-primary);
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.links a {
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.links a:hover {
+  color: var(--color-primary-400);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border-primary);
+}
+
+.copyright {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.legal {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.legal a {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  transition: color 0.2s ease;
+}
+
+.legal a:hover {
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+
+  .bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

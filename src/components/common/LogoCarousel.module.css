@@ -1,0 +1,73 @@
+.carousel {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.track {
+  display: flex;
+  gap: var(--space-12);
+  width: max-content;
+  animation: scrollLeft linear infinite;
+}
+
+.slow {
+  animation-duration: 40s;
+}
+
+.medium {
+  animation-duration: 30s;
+}
+
+.fast {
+  animation-duration: 20s;
+}
+
+.carousel:hover .track {
+  animation-play-state: paused;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 60px;
+}
+
+.logo {
+  max-width: 120px;
+  max-height: 48px;
+  height: auto;
+  width: auto;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.logoWrapper:hover .logo {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

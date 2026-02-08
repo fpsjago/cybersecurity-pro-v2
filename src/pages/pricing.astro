@@ -1,0 +1,439 @@
+---
+import PricingCard from '../components/sections/PricingCard';
+import PricingToggle from '../components/sections/PricingToggle';
+import FeatureComparisonTable from '../components/sections/FeatureComparisonTable';
+import FAQAccordion from '../components/sections/FAQAccordion';
+import '../styles/design-system.css';
+import '../styles/animations.css';
+
+const pricingTiers = [
+  {
+    name: 'Starter',
+    price: { monthly: 99, annual: 79 },
+    description: 'For small teams getting started with cybersecurity',
+    features: [
+      { name: 'Up to 50 endpoints', included: true },
+      { name: 'Endpoint protection (EDR)', included: true },
+      { name: 'Email security', included: true },
+      { name: 'Basic threat intelligence', included: true },
+      { name: '24/7 support', included: true },
+      { name: 'API access', included: false },
+      { name: 'Cloud security (CNAPP)', included: false },
+      { name: 'SSO & MFA', included: false },
+      { name: 'SIEM/SOAR', included: false },
+      { name: 'Custom integrations', included: false }
+    ],
+    cta: { label: 'Start Free Trial', href: '/signup?plan=starter' },
+    popular: false,
+    billingCycle: 'monthly' as const
+  },
+  {
+    name: 'Professional',
+    price: { monthly: 299, annual: 249 },
+    description: 'For growing businesses with advanced security needs',
+    features: [
+      { name: 'Up to 200 endpoints', included: true },
+      { name: 'Endpoint protection (EDR)', included: true },
+      { name: 'Email security', included: true },
+      { name: 'Advanced threat intelligence', included: true },
+      { name: '24/7 priority support', included: true },
+      { name: 'Full API access', included: true },
+      { name: 'Cloud security (CNAPP)', included: true },
+      { name: 'SSO & MFA', included: true },
+      { name: 'SIEM/SOAR', included: false },
+      { name: 'Custom integrations', included: false }
+    ],
+    cta: { label: 'Start Free Trial', href: '/signup?plan=professional' },
+    popular: true,
+    billingCycle: 'monthly' as const
+  },
+  {
+    name: 'Enterprise',
+    price: { monthly: 999, annual: 849 },
+    description: 'For large organizations requiring complete security',
+    features: [
+      { name: 'Unlimited endpoints', included: true },
+      { name: 'Endpoint protection (EDR)', included: true },
+      { name: 'Email security', included: true },
+      { name: 'Premium threat intelligence', included: true },
+      { name: '24/7 dedicated support', included: true },
+      { name: 'Full API access', included: true },
+      { name: 'Cloud security (CNAPP)', included: true },
+      { name: 'SSO & MFA', included: true },
+      { name: 'Full SIEM/SOAR platform', included: true },
+      { name: 'Unlimited custom integrations', included: true }
+    ],
+    cta: { label: 'Start Free Trial', href: '/signup?plan=enterprise' },
+    popular: false,
+    billingCycle: 'monthly' as const
+  },
+  {
+    name: 'Custom',
+    price: { monthly: 0, annual: 0 },
+    description: 'Tailored solutions for unique security requirements',
+    features: [
+      { name: 'Custom endpoint limits', included: true },
+      { name: 'All security solutions', included: true },
+      { name: 'On-premise deployment option', included: true },
+      { name: 'Custom threat intelligence feeds', included: true },
+      { name: 'Dedicated security team', included: true },
+      { name: 'Custom API development', included: true },
+      { name: 'White-label options', included: true },
+      { name: 'Custom SLA agreements', included: true },
+      { name: 'Managed security services', included: true },
+      { name: 'Full customization', included: true }
+    ],
+    cta: { label: 'Contact Sales', href: '/contact?inquiry=custom' },
+    popular: false,
+    billingCycle: 'monthly' as const
+  }
+];
+
+const comparisonData = {
+  tiers: ['Starter', 'Professional', 'Enterprise', 'Custom'],
+  categories: [
+    {
+      name: 'Core Protection',
+      features: [
+        { name: 'Endpoint Protection (EDR)', values: [true, true, true, true] },
+        { name: 'Email Security', values: [true, true, true, true] },
+        { name: 'Cloud Security (CNAPP)', values: [false, true, true, true] },
+        { name: 'Network Security (SASE)', values: [false, false, true, true] },
+        { name: 'Identity & Access (IAM)', values: [false, true, true, true] }
+      ]
+    },
+    {
+      name: 'Detection & Response',
+      features: [
+        { name: 'AI-Powered Detection', values: [true, true, true, true] },
+        { name: 'Threat Intelligence', values: ['Basic', 'Advanced', 'Premium', 'Custom'] },
+        { name: 'Automated Response', values: [false, true, true, true] },
+        { name: 'SIEM/SOAR Platform', values: [false, false, true, true] },
+        { name: 'Threat Hunting', values: [false, false, true, true] }
+      ]
+    },
+    {
+      name: 'Platform Features',
+      features: [
+        { name: 'Endpoint Limit', values: ['50', '200', 'Unlimited', 'Custom'] },
+        { name: 'API Access', values: [false, true, true, true] },
+        { name: 'Webhooks', values: [false, true, true, true] },
+        { name: 'Custom Integrations', values: [false, false, true, true] },
+        { name: 'Multi-Tenancy', values: [false, false, true, true] }
+      ]
+    },
+    {
+      name: 'Compliance & Reporting',
+      features: [
+        { name: 'Compliance Dashboards', values: [true, true, true, true] },
+        { name: 'Automated Reports', values: [false, true, true, true] },
+        { name: 'Custom Reports', values: [false, false, true, true] },
+        { name: 'Audit Logs', values: ['30 days', '90 days', '1 year', 'Unlimited'] },
+        { name: 'Compliance Automation', values: [false, false, true, true] }
+      ]
+    },
+    {
+      name: 'Support & SLA',
+      features: [
+        { name: 'Support Hours', values: ['24/7', '24/7 Priority', '24/7 Dedicated', 'Custom'] },
+        { name: 'Response Time', values: ['4 hours', '1 hour', '15 min', 'Custom'] },
+        { name: 'Uptime SLA', values: ['99.9%', '99.95%', '99.99%', 'Custom'] },
+        { name: 'Dedicated CSM', values: [false, false, true, true] },
+        { name: 'Onboarding Support', values: [false, true, true, true] }
+      ]
+    }
+  ]
+};
+
+const faqs = [
+  {
+    question: 'What\'s included in the free trial?',
+    answer: 'The 14-day free trial includes full access to all features of your chosen plan. No credit card required to start. You can upgrade, downgrade, or cancel anytime during the trial period.'
+  },
+  {
+    question: 'Can I change plans later?',
+    answer: 'Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately, and billing is prorated based on the remaining days in your billing cycle.'
+  },
+  {
+    question: 'What payment methods do you accept?',
+    answer: 'We accept all major credit cards (Visa, Mastercard, Amex), bank transfers, and purchase orders for Enterprise and Custom plans. Annual plans can be paid via invoice.'
+  },
+  {
+    question: 'Do you offer discounts for non-profits or education?',
+    answer: 'Yes! We offer 30% discounts for qualified non-profit organizations and educational institutions. Contact our sales team with your organization details to apply.'
+  },
+  {
+    question: 'What happens if I exceed my endpoint limit?',
+    answer: 'You\'ll receive a notification when you reach 80% of your endpoint limit. You can either upgrade to the next tier or purchase additional endpoint capacity. Overage charges apply if limits are exceeded without upgrading.'
+  },
+  {
+    question: 'Is there a setup fee?',
+    answer: 'No setup fees for Starter and Professional plans. Enterprise plans include free onboarding and deployment support. Custom plans may include implementation services depending on complexity.'
+  },
+  {
+    question: 'What\'s your refund policy?',
+    answer: 'We offer a 30-day money-back guarantee for new customers. If you\'re not satisfied within the first 30 days, contact support for a full refund. Annual subscriptions are pro-rated if canceled after 30 days.'
+  },
+  {
+    question: 'Can I deploy on-premise?',
+    answer: 'On-premise deployment is available for Enterprise and Custom plans. This option provides complete control over your data and infrastructure while maintaining all platform features.'
+  },
+  {
+    question: 'Do you provide implementation support?',
+    answer: 'Professional plans include email/chat implementation support. Enterprise plans include dedicated onboarding with a Customer Success Manager and technical architect. Custom plans include full managed deployment services.'
+  },
+  {
+    question: 'How does billing work for annual plans?',
+    answer: 'Annual plans are billed upfront for the full year at a 20% discount. You can pay via credit card, bank transfer, or invoice. Annual subscriptions auto-renew unless canceled 30 days before renewal.'
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing | CyberSec Pro</title>
+  <meta name="description" content="Simple, transparent pricing for enterprise cybersecurity. Plans starting at $99/month. 14-day free trial." />
+  <link rel="icon" href="/favicon.ico" />
+</head>
+<body>
+  <main>
+    <!-- Hero Section -->
+    <section class="section" style="background: var(--gradient-hero); text-align: center;">
+      <div class="container">
+        <nav style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">
+          <a href="/" style="color: var(--color-primary-500);">Home</a> / <span>Pricing</span>
+        </nav>
+        <h1 style="font-size: var(--text-6xl); font-weight: var(--font-extrabold); color: var(--color-text-primary); margin-bottom: var(--space-4); line-height: var(--leading-tight);">
+          Simple, <span style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Transparent</span> Pricing
+        </h1>
+        <p style="font-size: var(--text-xl); color: var(--color-text-secondary); max-width: 700px; margin: 0 auto var(--space-6); line-height: var(--leading-relaxed);">
+          Choose the plan that fits your organization. All plans include 24/7 support and a 14-day free trial.
+        </p>
+        
+        <div style="display: flex; justify-content: center; margin-bottom: var(--space-12);">
+          <div id="pricing-toggle-wrapper"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="section" style="margin-top: calc(var(--section-padding-lg) * -1);">
+      <div class="container">
+        <div id="pricing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); max-width: 1400px; margin: 0 auto;">
+          {/* Pricing cards will be rendered client-side */}
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section class="section" style="background: var(--color-bg-secondary);">
+      <div class="container">
+        <h2 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--color-text-primary); text-align: center; margin-bottom: var(--space-4);">
+          Detailed Feature Comparison
+        </h2>
+        <p style="font-size: var(--text-lg); color: var(--color-text-secondary); text-align: center; max-width: 600px; margin: 0 auto var(--space-12);">
+          See exactly what's included in each plan.
+        </p>
+        
+        <FeatureComparisonTable {...comparisonData} client:load />
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+      <div class="container">
+        <h2 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--color-text-primary); text-align: center; margin-bottom: var(--space-4);">
+          Frequently Asked Questions
+        </h2>
+        <p style="font-size: var(--text-lg); color: var(--color-text-secondary); text-align: center; max-width: 600px; margin: 0 auto var(--space-12);">
+          Have questions? We have answers.
+        </p>
+        
+        <div style="max-width: 900px; margin: 0 auto;">
+          <FAQAccordion items={faqs} client:load />
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="section" style="background: var(--color-bg-secondary);">
+      <div class="container">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+          <h2 style="font-size: var(--text-3xl); font-weight: var(--font-bold); color: var(--color-text-primary); margin-bottom: var(--space-8);">
+            Trusted by 10,000+ Organizations
+          </h2>
+          
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-8); margin-bottom: var(--space-12);">
+            {[
+              { value: '99.99%', label: 'Uptime SLA' },
+              { value: '24/7', label: 'Support' },
+              { value: '30-Day', label: 'Money Back' },
+              { value: 'SOC2', label: 'Certified' }
+            ].map(item => (
+              <div style="text-align: center;">
+                <div style="font-size: var(--text-3xl); font-weight: var(--font-extrabold); background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: var(--space-2);">
+                  {item.value}
+                </div>
+                <div style="font-size: var(--text-sm); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: var(--tracking-wider);">
+                  {item.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: var(--gradient-primary); text-align: center;">
+      <div class="container">
+        <h2 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: white; margin-bottom: var(--space-4);">
+          Not Sure Which Plan is Right?
+        </h2>
+        <p style="font-size: var(--text-xl); color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 0 auto var(--space-8);">
+          Talk to our security experts. We'll help you choose the perfect solution for your organization.
+        </p>
+        <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+          <a href="/contact" style="padding: var(--space-4) var(--space-8); background: white; color: var(--color-primary-500); border-radius: var(--radius-lg); font-weight: var(--font-semibold); box-shadow: var(--shadow-xl);">
+            Talk to Sales
+          </a>
+          <a href="/solutions" style="padding: var(--space-4) var(--space-8); background: transparent; color: white; border: 2px solid white; border-radius: var(--radius-lg); font-weight: var(--font-semibold);">
+            Explore Solutions
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Client-side pricing toggle and cards rendering
+    import PricingToggle from '../components/sections/PricingToggle';
+    import PricingCard from '../components/sections/PricingCard';
+    import { render } from 'preact';
+    import { useState } from 'preact/hooks';
+
+    function PricingSection() {
+      const [billingCycle, setBillingCycle] = useState('monthly');
+
+      const tiers = [
+        {
+          name: 'Starter',
+          price: { monthly: 99, annual: 79 },
+          description: 'For small teams getting started with cybersecurity',
+          features: [
+            { name: 'Up to 50 endpoints', included: true },
+            { name: 'Endpoint protection (EDR)', included: true },
+            { name: 'Email security', included: true },
+            { name: 'Basic threat intelligence', included: true },
+            { name: '24/7 support', included: true },
+            { name: 'API access', included: false },
+            { name: 'Cloud security (CNAPP)', included: false },
+            { name: 'SSO & MFA', included: false },
+            { name: 'SIEM/SOAR', included: false },
+            { name: 'Custom integrations', included: false }
+          ],
+          cta: { label: 'Start Free Trial', href: '/signup?plan=starter' },
+          popular: false
+        },
+        {
+          name: 'Professional',
+          price: { monthly: 299, annual: 249 },
+          description: 'For growing businesses with advanced security needs',
+          features: [
+            { name: 'Up to 200 endpoints', included: true },
+            { name: 'Endpoint protection (EDR)', included: true },
+            { name: 'Email security', included: true },
+            { name: 'Advanced threat intelligence', included: true },
+            { name: '24/7 priority support', included: true },
+            { name: 'Full API access', included: true },
+            { name: 'Cloud security (CNAPP)', included: true },
+            { name: 'SSO & MFA', included: true },
+            { name: 'SIEM/SOAR', included: false },
+            { name: 'Custom integrations', included: false }
+          ],
+          cta: { label: 'Start Free Trial', href: '/signup?plan=professional' },
+          popular: true
+        },
+        {
+          name: 'Enterprise',
+          price: { monthly: 999, annual: 849 },
+          description: 'For large organizations requiring complete security',
+          features: [
+            { name: 'Unlimited endpoints', included: true },
+            { name: 'Endpoint protection (EDR)', included: true },
+            { name: 'Email security', included: true },
+            { name: 'Premium threat intelligence', included: true },
+            { name: '24/7 dedicated support', included: true },
+            { name: 'Full API access', included: true },
+            { name: 'Cloud security (CNAPP)', included: true },
+            { name: 'SSO & MFA', included: true },
+            { name: 'Full SIEM/SOAR platform', included: true },
+            { name: 'Unlimited custom integrations', included: true }
+          ],
+          cta: { label: 'Start Free Trial', href: '/signup?plan=enterprise' },
+          popular: false
+        },
+        {
+          name: 'Custom',
+          price: { monthly: 0, annual: 0 },
+          description: 'Tailored solutions for unique security requirements',
+          features: [
+            { name: 'Custom endpoint limits', included: true },
+            { name: 'All security solutions', included: true },
+            { name: 'On-premise deployment option', included: true },
+            { name: 'Custom threat intelligence feeds', included: true },
+            { name: 'Dedicated security team', included: true },
+            { name: 'Custom API development', included: true },
+            { name: 'White-label options', included: true },
+            { name: 'Custom SLA agreements', included: true },
+            { name: 'Managed security services', included: true },
+            { name: 'Full customization', included: true }
+          ],
+          cta: { label: 'Contact Sales', href: '/contact?inquiry=custom' },
+          popular: false
+        }
+      ];
+
+      return (
+        <>
+          <div id="pricing-toggle-wrapper">
+            <PricingToggle
+              value={billingCycle}
+              onChange={setBillingCycle}
+              discount={20}
+            />
+          </div>
+          <div id="pricing-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 'var(--space-6)',
+            maxWidth: '1400px',
+            margin: '0 auto'
+          }}>
+            {tiers.map(tier => (
+              <PricingCard
+                key={tier.name}
+                {...tier}
+                billingCycle={billingCycle}
+              />
+            ))}
+          </div>
+        </>
+      );
+    }
+
+    // Render on client-side
+    if (typeof window !== 'undefined') {
+      const toggleWrapper = document.getElementById('pricing-toggle-wrapper');
+      const gridWrapper = document.getElementById('pricing-grid');
+      
+      if (toggleWrapper && gridWrapper) {
+        render(<PricingSection />, toggleWrapper.parentElement);
+      }
+    }
+  </script>
+</body>
+</html>

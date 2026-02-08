@@ -1,0 +1,276 @@
+---
+import { ResourceCardFeatured } from '../components/resources/ResourceCardFeatured';
+import { ResourceCard } from '../components/resources/ResourceCard';
+import { CategoryFilter } from '../components/resources/CategoryFilter';
+import { NewsletterForm } from '../components/resources/NewsletterForm';
+import Container from '../components/common/Container';
+import SectionHeader from '../components/common/SectionHeader';
+
+const resources = [
+  // Blog Posts
+  { id: 1, title: 'The State of Ransomware in 2025', excerpt: 'Our latest research reveals evolving tactics and emerging threats in the ransomware landscape.', category: 'Blog', thumbnail: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop', date: 'Feb 5, 2025', readTime: '8 min read', link: '#' },
+  { id: 2, title: 'Zero Trust Security Implementation Guide', excerpt: 'A comprehensive guide to implementing zero trust architecture in enterprise environments.', category: 'Blog', thumbnail: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop', date: 'Jan 28, 2025', readTime: '12 min read', link: '#' },
+  { id: 3, title: 'AI in Cybersecurity: Opportunities and Challenges', excerpt: 'Exploring how artificial intelligence is reshaping threat detection and response.', category: 'Blog', thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop', date: 'Jan 22, 2025', readTime: '10 min read', link: '#' },
+  { id: 4, title: '5 Security Mistakes That Cost Companies Millions', excerpt: 'Learn from the most common security oversights and how to avoid them.', category: 'Blog', thumbnail: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=600&h=400&fit=crop', date: 'Jan 15, 2025', readTime: '6 min read', link: '#' },
+  { id: 5, title: 'Cloud Security Best Practices for 2025', excerpt: 'Essential strategies for securing multi-cloud environments in the modern enterprise.', category: 'Blog', thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop', date: 'Jan 10, 2025', readTime: '9 min read', link: '#' },
+  { id: 6, title: 'Incident Response Playbook: A Step-by-Step Guide', excerpt: 'Build an effective incident response plan with our proven framework.', category: 'Blog', thumbnail: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop', date: 'Dec 28, 2024', readTime: '15 min read', link: '#' },
+  
+  // Whitepapers
+  { id: 7, title: 'Enterprise Threat Intelligence Report 2025', excerpt: 'In-depth analysis of global threat landscape and attack trends.', category: 'Whitepapers', thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop', date: 'Jan 2025', readTime: '45 min read', link: '#' },
+  { id: 8, title: 'CNAPP Buyer\'s Guide', excerpt: 'Comprehensive evaluation criteria for selecting a cloud-native application protection platform.', category: 'Whitepapers', thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop', date: 'Dec 2024', readTime: '30 min read', link: '#' },
+  { id: 9, title: 'ROI of AI-Powered Security Operations', excerpt: 'Data-driven analysis of cost savings and efficiency gains.', category: 'Whitepapers', thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop', date: 'Nov 2024', readTime: '25 min read', link: '#' },
+  
+  // Case Studies
+  { id: 10, title: 'How Fortune 500 Bank Stopped APT Attack', excerpt: 'Real-world case study of preventing a sophisticated nation-state attack.', category: 'Case Studies', thumbnail: 'https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?w=600&h=400&fit=crop', date: 'Jan 2025', readTime: '12 min read', link: '#' },
+  { id: 11, title: 'Healthcare Network: 90% Reduction in Incidents', excerpt: 'How a major healthcare provider transformed their security posture.', category: 'Case Studies', thumbnail: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop', date: 'Dec 2024', readTime: '10 min read', link: '#' },
+  { id: 12, title: 'Retail Chain: $2M Annual Savings', excerpt: 'Achieving enterprise-grade security while reducing costs.', category: 'Case Studies', thumbnail: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=600&h=400&fit=crop', date: 'Nov 2024', readTime: '8 min read', link: '#' },
+  
+  // Webinars
+  { id: 13, title: 'Live Demo: AI-Powered Threat Detection', excerpt: 'Watch our platform detect and respond to threats in real-time.', category: 'Webinars', thumbnail: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=600&h=400&fit=crop', date: 'Feb 15, 2025', readTime: '60 min', link: '#' },
+  { id: 14, title: 'Webinar: Building a Security-First Culture', excerpt: 'Expert panel discussion on organizational security transformation.', category: 'Webinars', thumbnail: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=600&h=400&fit=crop', date: 'Feb 22, 2025', readTime: '45 min', link: '#' },
+  { id: 15, title: 'Q&A: Ask Our Security Experts Anything', excerpt: 'Monthly live Q&A session with our CISO and security team.', category: 'Webinars', thumbnail: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=400&fit=crop', date: 'Mar 1, 2025', readTime: '60 min', link: '#' },
+];
+
+const featuredResource = resources[0];
+---
+
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources & Blog - CyberSec Pro</title>
+  <meta name="description" content="Security insights, threat intelligence, and best practices from cybersecurity experts. Explore our blog, whitepapers, case studies, and webinars." />
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <Container client:load>
+      <div class="hero-content">
+        <span class="badge">Knowledge Center</span>
+        <h1 class="title">Security Resources & Insights</h1>
+        <p class="subtitle">Stay ahead of threats with expert analysis, research, and best practices from our security team.</p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Featured Resource -->
+  <section class="featured-section">
+    <Container client:load>
+      <ResourceCardFeatured client:load {...featuredResource} image="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=600&fit=crop" />
+    </Container>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="filter-section">
+    <Container client:load>
+      <CategoryFilter 
+        client:load 
+        categories={['All', 'Blog', 'Whitepapers', 'Case Studies', 'Webinars']}
+        activeCategory="All"
+        onCategoryChange={(cat: string) => console.log(cat)}
+      />
+    </Container>
+  </section>
+
+  <!-- Resources Grid -->
+  <section class="resources-section">
+    <Container client:load>
+      <div class="resources-grid">
+        {resources.slice(1).map(resource => (
+          <ResourceCard client:load {...resource} />
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Newsletter Signup -->
+  <section class="newsletter-section">
+    <Container client:load>
+      <NewsletterForm client:load />
+    </Container>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <Container client:load>
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to Secure Your Organization?</h2>
+        <p class="cta-subtitle">Start your free 14-day trial. No credit card required.</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="button-primary">Start Free Trial</a>
+          <a href="/contact" class="button-secondary">Talk to Sales</a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0a0e1a;
+    color: #f8fafc;
+    line-height: 1.5;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #0a0e1a 0%, #1e3a8a 100%);
+    padding: 8rem 0 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #22d3ee;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  /* Sections */
+  .featured-section,
+  .filter-section,
+  .resources-section,
+  .newsletter-section,
+  .cta-section {
+    padding: 4rem 0;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .cta-subtitle {
+    font-size: 1.125rem;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .button-primary,
+  .button-secondary {
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .button-primary {
+    background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    color: white;
+    box-shadow: 0 4px 20px rgba(6, 182, 212, 0.4);
+  }
+
+  .button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(6, 182, 212, 0.5);
+  }
+
+  .button-secondary {
+    background: rgba(15, 22, 41, 0.8);
+    color: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .button-secondary:hover {
+    border-color: rgba(6, 182, 212, 0.3);
+    background: rgba(21, 28, 50, 0.9);
+  }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2.5rem;
+    }
+
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-title {
+      font-size: 2rem;
+    }
+  }
+</style>
