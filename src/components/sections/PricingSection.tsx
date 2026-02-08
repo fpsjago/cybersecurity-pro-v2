@@ -2,6 +2,8 @@ import { useState } from 'react';
 import PricingToggle from './PricingToggle';
 import PricingCard from './PricingCard';
 
+const BASE_URL = import.meta.env.BASE_URL || '';
+
 const tiers = [
   {
     name: 'Starter',
@@ -19,7 +21,7 @@ const tiers = [
       { name: 'SIEM/SOAR', included: false },
       { name: 'Custom integrations', included: false }
     ],
-    cta: { label: 'Start Free Trial', href: '/signup?plan=starter' },
+    cta: { label: 'Start Free Trial', href: `${BASE_URL}/contact/` },
     popular: false
   },
   {
@@ -38,7 +40,7 @@ const tiers = [
       { name: 'SIEM/SOAR', included: false },
       { name: 'Custom integrations', included: false }
     ],
-    cta: { label: 'Start Free Trial', href: '/signup?plan=professional' },
+    cta: { label: 'Start Free Trial', href: `${BASE_URL}/contact/` },
     popular: true
   },
   {
@@ -57,7 +59,7 @@ const tiers = [
       { name: 'Full SIEM/SOAR platform', included: true },
       { name: 'Unlimited custom integrations', included: true }
     ],
-    cta: { label: 'Start Free Trial', href: '/signup?plan=enterprise' },
+    cta: { label: 'Start Free Trial', href: `${BASE_URL}/contact/` },
     popular: false
   },
   {
@@ -76,7 +78,7 @@ const tiers = [
       { name: 'Managed security services', included: true },
       { name: 'Full customization', included: true }
     ],
-    cta: { label: 'Contact Sales', href: '/contact?inquiry=custom' },
+    cta: { label: 'Contact Sales', href: `${BASE_URL}/contact/` },
     popular: false
   }
 ];
