@@ -57,9 +57,14 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <p className={styles.copyright}>
-            © {year} CyberSec Pro. All rights reserved.
-          </p>
+          <div className={styles.bottomLeft}>
+            <p className={styles.copyright}>
+              © {year} CyberSec Pro. All rights reserved.
+            </p>
+            <p className={styles.credit}>
+              Template by <a href="https://jagofps.dev" target="_blank" rel="noopener noreferrer" className={styles.creditLink}>jagoFps</a>
+            </p>
+          </div>
           <div className={styles.legal}>
             <a href={`${BASE_URL}/contact/`}>Privacy Policy</a>
             <a href={`${BASE_URL}/contact/`}>Terms of Service</a>

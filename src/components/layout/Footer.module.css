@@ -95,9 +95,32 @@
   border-top: 1px solid var(--color-border-primary);
 }
 
+.bottomLeft {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .copyright {
   color: var(--color-text-muted);
   font-size: var(--text-sm);
+  margin: 0;
+}
+
+.credit {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+.creditLink {
+  color: var(--color-primary-400);
+  font-weight: var(--font-medium);
+  transition: color 0.2s ease;
+}
+
+.creditLink:hover {
+  color: var(--color-primary-300);
 }
 
 .legal {
@@ -131,5 +154,11 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .bottomLeft {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
   }
 }
